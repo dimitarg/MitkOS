@@ -90,6 +90,8 @@ in {
 
     enableCompletion = true;
     
+    # This allows to use zsh as a shell in nix-shell, instead of defaulting to bash
+    # See https://github.com/chisui/zsh-nix-shell
     plugins = [
       {
         name = "zsh-nix-shell";
