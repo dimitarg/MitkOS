@@ -42,6 +42,7 @@ in {
     pkgs.webcamoid
 
     pkgs.awscli2
+    pkgs.jetbrains.idea-ultimate
   ];
 
 
