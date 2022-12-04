@@ -82,6 +82,7 @@ in {
       plugins = [ 
         "git"
         "aws"
+        "command-not-found"
       ];
       theme = "robbyrussell";
     };
