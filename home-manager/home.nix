@@ -36,6 +36,7 @@ in {
 
   home.packages = [
     pkgs.htop
+    pkgs.bind
 
     pkgs.slack
     pkgs.zoom-us
