@@ -129,6 +129,7 @@
     cheese      # photo booth
     epiphany    # web browser
     gedit       # text editor
+    pkgs.gnome-text-editor
     # totem       # video player
     # evince      # document viewer
     geary       # email client
