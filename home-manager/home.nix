@@ -37,10 +37,13 @@ in {
   home.packages = [
     pkgs.htop
     pkgs.bind
+    pkgs.jq
 
     pkgs.slack
     pkgs.zoom-us
     pkgs.webcamoid
+
+    pkgs.spotify
 
     pkgs.awscli2
     pkgs.jetbrains.idea-ultimate
@@ -63,7 +66,7 @@ in {
     };
     extensions = [
       pkgs.nur.repos.rycee.firefox-addons.lastpass-password-manager
-      pkgs.nur.repos.rycee.firefox-addons.https-everywhere
+      ## TODO this is missing from pkgs.nur.repos.rycee pkgs.nur.repos.rycee.firefox-addons.https-everywhere
     ];
   };
 
