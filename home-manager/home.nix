@@ -76,6 +76,7 @@ in {
       ll = "ls -lah";
       # this file is expected to be created manually and is not provisioned via system config or home manager
       workvpn = "sudo openvpn --config /etc/openvpn_configs/work.ovpn";
+      workvpn2 = "sudo openvpn --config /etc/openvpn_configs/work-new.ovpn";
     };
     history = {
       size = 10000;
