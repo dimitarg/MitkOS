@@ -63,11 +63,13 @@ in {
         # disables firefox password manager as we use an external one
         "signon.rememberSignons" = false;
       };
+
+      extensions = [
+        pkgs.nur.repos.rycee.firefox-addons.lastpass-password-manager
+        ## TODO this is missing from pkgs.nur.repos.rycee pkgs.nur.repos.rycee.firefox-addons.https-everywhere
+      ];
     };
-    extensions = [
-      pkgs.nur.repos.rycee.firefox-addons.lastpass-password-manager
-      ## TODO this is missing from pkgs.nur.repos.rycee pkgs.nur.repos.rycee.firefox-addons.https-everywhere
-    ];
+    
   };
 
   programs.zsh = {
