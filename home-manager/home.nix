@@ -41,6 +41,8 @@ in {
 
     pkgs.slack
     pkgs.zoom-us
+    pkgs.discord
+    
     pkgs.webcamoid
 
     pkgs.spotify
