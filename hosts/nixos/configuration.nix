@@ -96,9 +96,17 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
   
-  # enable docker with default settings. this will auto-start dockerd
-  virtualisation.docker.enable = true;
-
+  # enable docker. This will auto-start dockerd
+  virtualisation = {
+    docker = {
+      enable = true;
+      autoPrune = {
+        enable = true;
+        dates = "weekly";
+      };
+    };
+  };
+      
   users.defaultUserShell = pkgs.zsh;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -176,7 +184,26 @@
     allowedTCPPorts = [ ];
     allowedUDPPorts = [ ];
     allowPing = false;
-};
+  };
+
+  # Nix daemon config
+  nix = {
+    # Automate garbage collection
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+
+    settings = {
+      # Automate `nix store --optimise`
+      auto-optimise-store = true;
+
+      # Avoid unwanted garbage collection when using nix-direnv
+      keep-outputs = true;
+      keep-derivations = true;
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
