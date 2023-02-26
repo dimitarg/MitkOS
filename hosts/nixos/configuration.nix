@@ -25,6 +25,8 @@
   boot.initrd.luks.devices."luks-d074f5e5-f947-43b3-9406-65fe6864d93e".device = "/dev/disk/by-uuid/d074f5e5-f947-43b3-9406-65fe6864d93e";
   boot.initrd.luks.devices."luks-d074f5e5-f947-43b3-9406-65fe6864d93e".keyFile = "/crypto_keyfile.bin";
 
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
+  
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -178,6 +180,9 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # firmware update service
+  services.fwupd.enable = true;
+  
   # firewall enabled with no allowed ingress is the default, let's make it explicit here.
   networking.firewall = {
     enable = true;
