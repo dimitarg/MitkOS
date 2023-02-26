@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 
-let
-  unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
-in {
+{
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -133,11 +131,11 @@ in {
 
   programs.vscode = {
     enable = true;
-    package = unstable.vscode;
+    package = pkgs.vscode;
     extensions = [
-      unstable.vscode-extensions.bbenoist.nix
-      unstable.vscode-extensions.scalameta.metals
-      unstable.vscode-extensions.scala-lang.scala
+      pkgs.vscode-extensions.bbenoist.nix
+      pkgs.vscode-extensions.scalameta.metals
+      pkgs.vscode-extensions.scala-lang.scala
     ];
   };
   
