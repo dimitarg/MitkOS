@@ -207,6 +207,9 @@
       # Avoid unwanted garbage collection when using nix-direnv
       keep-outputs = true;
       keep-derivations = true;
+
+      #enable nix flakes
+      experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
