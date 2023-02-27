@@ -127,6 +127,11 @@
     enable = true;
     userName = "Dimitar Georgiev";
     userEmail = "dimitar.georgiev.bg@gmail.com";
+    extraConfig = {
+      push = {
+        autoSetupRemote = true;
+      };
+    };
   };
 
   programs.vscode = {
