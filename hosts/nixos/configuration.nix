@@ -60,7 +60,23 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+
+  services.xserver.desktopManager.gnome = {
+  enable = true;
+
+  # touchegg - three finger gestures
+  extraGSettingsOverrides = ''
+    [org.gnome.shell]
+    enabled-extensions=['x11gestures@joseexposito.github.io']
+  '';
+  extraGSettingsOverridePackages = [
+    pkgs.gnome.gnome-shell # for org.gnome.shell
+  ];
+
+};
+
+# touchegg - three finger gestures
+services.touchegg.enable = true;
 
 
   # Configure keymap in X11
@@ -98,6 +114,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
   
+  
   # enable docker. This will auto-start dockerd
   virtualisation = {
     docker = {
@@ -131,6 +148,8 @@
     openvpn
     curl
     killall
+    # touchegg - three finger gestures
+    pkgs.gnomeExtensions.x11-gestures
   ];
 
 
