@@ -63,6 +63,10 @@
 
   services.xserver.desktopManager.gnome = {
   enable = true;
+  extraGSettingsOverrides = ''
+    [org.gnome.desktop.interface]
+    enable-hot-corners=false
+  '';
 
 };
 
