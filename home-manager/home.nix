@@ -33,20 +33,27 @@
   programs.home-manager.enable = true;
 
   home.packages = [
+    
     pkgs.htop
     pkgs.bind
     pkgs.jq
 
+    # needed globally for user because config is user-global anyways
+    pkgs.awscli2
+
+    # comms
     pkgs.slack
     pkgs.zoom-us
     pkgs.discord
     
-    pkgs.webcamoid
 
-    pkgs.spotify
-
-    pkgs.awscli2
     pkgs.jetbrains.idea-ultimate
+
+    # non-work
+    pkgs.webcamoid
+    pkgs.spotify
+    pkgs.transmission
+
   ];
 
 
