@@ -64,22 +64,9 @@
   services.xserver.desktopManager.gnome = {
   enable = true;
 
-  # touchegg - three finger gestures
-  extraGSettingsOverrides = ''
-    [org.gnome.shell]
-    enabled-extensions=['x11gestures@joseexposito.github.io']
-  '';
-  extraGSettingsOverridePackages = [
-    pkgs.gnome.gnome-shell # for org.gnome.shell
-  ];
-
 };
 
-# touchegg - three finger gestures
-services.touchegg.enable = true;
-
-
-  # Configure keymap in X11
+  # Configure keymap
   # Unfortunately this only gets picked up on initial setup. If you
   # change these, run:
   # gsettings reset org.gnome.desktop.input-sources xkb-options
