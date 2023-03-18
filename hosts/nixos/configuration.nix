@@ -162,6 +162,11 @@
    gnome-weather
    yelp
    # gnome-disk-utility pkgs.gnome-connections
+   pkgs.gnome-tour
+  ];
+
+  services.xserver.excludePackages = [
+    pkgs.xterm 
   ];
 
   # zsh completion for system packages
