@@ -141,8 +141,6 @@
     openvpn
     curl
     killall
-    # touchegg - three finger gestures
-    pkgs.gnomeExtensions.x11-gestures
   ];
 
 
