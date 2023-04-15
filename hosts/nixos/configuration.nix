@@ -5,10 +5,18 @@
 { config, pkgs, ... }:
 
 {
+  
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+  
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./gpu-intel.nix
+      ./home-manager/home.nix
     ];
 
   # Bootloader.

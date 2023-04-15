@@ -4,5 +4,4 @@ set -euo pipefail
 
 ./copy-to-local.sh
 
-sudo nixos-rebuild switch --show-trace
-home-manager build switch --show-trace
+sudo nixos-rebuild switch
