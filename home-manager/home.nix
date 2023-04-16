@@ -43,6 +43,7 @@
       pkgs.htop
       pkgs.bind
       pkgs.jq
+      pkgs.file
 
       # needed globally for user because config is user-global anyways
       pkgs.awscli2
@@ -157,6 +158,9 @@
         pkgs.vscode-extensions.scala-lang.scala
       ];
     };
+
+    home.file.".face".source = ./assets/profilepic.jpg;
+
   };
 }
 
