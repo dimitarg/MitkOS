@@ -83,7 +83,6 @@
 
         extensions = [
           pkgs.nur.repos.rycee.firefox-addons.lastpass-password-manager
-          ## TODO this is missing from pkgs.nur.repos.rycee pkgs.nur.repos.rycee.firefox-addons.https-everywhere
         ];
       };
       
@@ -124,8 +123,8 @@
           src = pkgs.fetchFromGitHub {
             owner = "chisui";
             repo = "zsh-nix-shell";
-            rev = "v0.5.0";
-            sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+            rev = "v0.6.0";
+            sha256 = "B0mdmIqefbm5H8wSG1h41c/J4shA186OyqvivmSK42Q=";
           };
         }
       ];
