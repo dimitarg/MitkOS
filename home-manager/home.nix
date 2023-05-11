@@ -78,11 +78,16 @@
           "dom.security.https_only_mode" = true;
           # disables firefox password manager as we use an external one
           "signon.rememberSignons" = false;
+          "privacy.donottrackheader.enabled" = true;
+          # video hardware accerelation using vaapi
           "media.ffmpeg.vaapi.enabled" = true;
+
         };
 
         extensions = [
           pkgs.nur.repos.rycee.firefox-addons.lastpass-password-manager
+          pkgs.nur.repos.rycee.firefox-addons.privacy-badger
+          pkgs.nur.repos.rycee.firefox-addons.ublock-origin
         ];
       };
       
