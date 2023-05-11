@@ -78,6 +78,7 @@
           "dom.security.https_only_mode" = true;
           # disables firefox password manager as we use an external one
           "signon.rememberSignons" = false;
+          "media.ffmpeg.vaapi.enabled" = true;
         };
 
         extensions = [
