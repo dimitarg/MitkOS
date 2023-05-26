@@ -57,10 +57,8 @@
       pkgs.jetbrains.idea-ultimate
 
       # non-work
-      pkgs.gnome.gnome-sound-recorder
       pkgs.webcamoid
       pkgs.spotify
-      pkgs.transmission
       pkgs.vlc
 
     ];

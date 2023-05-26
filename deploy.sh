@@ -4,8 +4,7 @@ set -euo pipefail
 
 ./copy-to-local.sh
 
-# this is supposed to make nixos-rebuild switch use this in the bootloader entry, but for some reason it doesn't work
-# adding --impure to the switch command doesn't help either.
+# Use HEAD commit title in the bootloader entry label
+# FIXME this breaks if there is whitespace in the commit message?!?
 export NIXOS_LABEL=$(git show -s --format=%s)
-
-sudo nixos-rebuild switch
+sudo --preserve-env=NIXOS_LABEL nixos-rebuild switch
