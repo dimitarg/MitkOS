@@ -159,28 +159,26 @@
 
   # exclude some packages that I don't use from the default GUI distro
  environment.gnome.excludePackages = with pkgs.gnome; [
-    cheese      # photo booth
-    epiphany    # web browser
-    gedit       # text editor
-    pkgs.gnome-text-editor
-    # totem       # video player
-    # evince      # document viewer
-    geary       # email client
-    seahorse    # password manager
-    # these should be self explanatory
-    # gnome-calculator gnome-calendar gnome-characters gnome-clocks
+   cheese      # photo booth
+   epiphany    # web browser
+   gedit       # text editor, not needed as we have vscode and nano
+   pkgs.gnome-text-editor
+   # totem       # video player
+   # evince      # document viewer
+   geary       # email client
+   seahorse    # password manager
+   # gnome-calculator gnome-calendar  gnome-clocks
    gnome-contacts
-    #  gnome-font-viewer gnome-logs
    gnome-maps
    # gnome-music
    pkgs.gnome-photos
-   # gnome-screenshot
-    # gnome-system-monitor
    gnome-weather
    yelp
    # gnome-disk-utility pkgs.gnome-connections
    pkgs.gnome-tour
-  ];
+   gnome-characters
+   gnome-font-viewer
+ ];
 
   services.xserver.excludePackages = [
     pkgs.xterm 

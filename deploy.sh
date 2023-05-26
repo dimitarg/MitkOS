@@ -5,4 +5,4 @@ set -euo pipefail
 ./copy-to-local.sh
 
 export NIXOS_LABEL=$(git show -s --format=%s)
-sudo nixos-rebuild switch
+sudo nixos-rebuild switch --impure # to honour env var above?
