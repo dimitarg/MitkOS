@@ -159,6 +159,7 @@
         pkgs.vscode-extensions.bbenoist.nix
         pkgs.vscode-extensions.scalameta.metals
         pkgs.vscode-extensions.scala-lang.scala
+        pkgs.vscode-extensions.haskell.haskell
       ];
     };
 
