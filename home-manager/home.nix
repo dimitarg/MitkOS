@@ -50,7 +50,7 @@
 
       # comms
       pkgs.slack
-      #pkgs.zoom-us
+      pkgs.zoom-us
       pkgs.discord
       
 
