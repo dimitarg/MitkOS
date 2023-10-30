@@ -52,7 +52,6 @@
       pkgs.slack
       pkgs.zoom-us
       pkgs.discord
-      
 
       pkgs.jetbrains.idea-ultimate
 
@@ -89,6 +88,10 @@
         ];
       };
       
+    };
+
+    programs.chromium = {
+      enable = true;
     };
 
     programs.zsh = {
