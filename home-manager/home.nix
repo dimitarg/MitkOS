@@ -78,7 +78,6 @@
           "privacy.donottrackheader.enabled" = true;
           # video hardware accerelation using vaapi
           "media.ffmpeg.vaapi.enabled" = true;
-
         };
 
         extensions = [
@@ -86,6 +85,14 @@
           pkgs.nur.repos.rycee.firefox-addons.privacy-badger
           pkgs.nur.repos.rycee.firefox-addons.ublock-origin
         ];
+      };
+
+      policies = {
+        "SecurityDevices" = {
+          "Add" = {
+            "CAC Module" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+          };
+        };
       };
       
     };

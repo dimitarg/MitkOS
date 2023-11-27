@@ -115,6 +115,14 @@
     #media-session.enable = true;
   };
 
+  
+  # smart card daemon
+  services.pcscd = {
+    enable = true;
+    plugins = [pkgs.ccid];
+  };
+
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
   
@@ -154,6 +162,11 @@
     openvpn
     curl
     killall
+
+    # certs / smart cards
+    pcsclite
+    ccid
+    opensc
   ];
 
 
