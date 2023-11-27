@@ -60,6 +60,8 @@
       pkgs.spotify
       pkgs.vlc
 
+      pkgs.libreoffice
+
     ];
 
 
