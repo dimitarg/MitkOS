@@ -177,6 +177,14 @@
 
     home.file.".face".source = ./assets/profilepic.jpg;
 
+    # Boilerplate for virt-manager first time setup
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu:///system"];
+      };
+    };
+
   };
 }
 

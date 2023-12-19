@@ -136,7 +136,13 @@
         dates = "weekly";
       };
     };
+
+    libvirtd = {
+      enable = true;
+    };
   };
+
+  programs.virt-manager.enable = true;
       
 
   programs.zsh.enable=true;
