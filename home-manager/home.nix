@@ -109,6 +109,8 @@
         ll = "ls -lah";
         # this file is expected to be created manually and is not provisioned via system config or home manager
         workvpn = "sudo openvpn --config /etc/openvpn_configs/work-new.ovpn";
+        # this file is expected to be created manually and is not provisioned via system config or home manager
+        jenkins_tunnel = "sudo ssh -C -L 443:test-jenkins.api-hss.com:443 -o StrictHostKeychecking=no -i ~/.ssh/hss-bastion ec2-user@13.40.46.221";
       };
       history = {
         size = 10000;
