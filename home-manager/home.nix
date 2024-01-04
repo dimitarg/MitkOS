@@ -1,26 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
+
 {
-  imports = [
-    <home-manager/nixos>
-  ];
+    
+    # access to additional packages not in nixpkgs via https://github.com/nix-community/NUR
+    imports = [
+      # this module adds config.nur / config.nur.repos to config, used later
+      inputs.nur.nixosModules.nur
+    ];
 
-
-
-  home-manager.users.fmap = {
-
-      # Let Home Manager install and manage itself.
-    programs.home-manager.enable = true;
-
-    # access to additional packages via https://github.com/nix-community/NUR
-    nixpkgs.config.packageOverrides = pkgs: {
-      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
-    };
-
-
-      # Home Manager needs a bit of information about you and the
-    # paths it should manage.
+    # Home Manager needs a bit of information about us and the paths it should manage.
     home.username = "fmap";
     home.homeDirectory = "/home/fmap";
 
@@ -34,7 +22,6 @@
     # changes in each release.
     home.stateVersion = "22.05";
 
-    
 
     xdg.enable = true;
 
@@ -83,9 +70,9 @@
         };
 
         extensions = [
-          pkgs.nur.repos.rycee.firefox-addons.lastpass-password-manager
-          pkgs.nur.repos.rycee.firefox-addons.privacy-badger
-          pkgs.nur.repos.rycee.firefox-addons.ublock-origin
+          config.nur.repos.rycee.firefox-addons.lastpass-password-manager
+          config.nur.repos.rycee.firefox-addons.privacy-badger
+          config.nur.repos.rycee.firefox-addons.ublock-origin
         ];
       };
 
@@ -114,7 +101,7 @@
       };
       history = {
         size = 10000;
-        path = "${config.home-manager.users.fmap.xdg.dataHome}/zsh/history";
+        path = "${config.xdg.dataHome}/zsh/history";
       };
       oh-my-zsh = {
         enable = true;
@@ -187,6 +174,5 @@
       };
     };
 
-  };
 }
 

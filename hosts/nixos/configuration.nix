@@ -6,17 +6,10 @@
 
 {
   
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
-  
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./gpu-intel.nix
-      ./home-manager/home.nix
     ];
 
   # Bootloader.
@@ -180,7 +173,7 @@
  environment.gnome.excludePackages = with pkgs.gnome; [
    cheese      # photo booth
    epiphany    # web browser
-   gedit       # text editor, not needed as we have vscode and nano
+   pkgs.gedit       # text editor, not needed as we have vscode and nano
    pkgs.gnome-text-editor
    # totem       # video player
    # evince      # document viewer

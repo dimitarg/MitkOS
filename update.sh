@@ -2,5 +2,4 @@
 
 set -euo pipefail
 
-sudo nix-channel --update # system
-./deploy.sh
+nix flake update
