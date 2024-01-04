@@ -124,6 +124,7 @@
         {
           name = "zsh-nix-shell";
           file = "nix-shell.plugin.zsh";
+          # FIXME this should be flake input
           src = pkgs.fetchFromGitHub {
             owner = "chisui";
             repo = "zsh-nix-shell";
