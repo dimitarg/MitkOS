@@ -13,6 +13,11 @@
     };
 
     nur.url = github:nix-community/NUR;
+
+    zsh-nix-shell = {
+      url = "github:chisui/zsh-nix-shell";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... } @ inputs : {

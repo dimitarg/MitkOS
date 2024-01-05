@@ -119,18 +119,11 @@
       enableCompletion = true;
       
       # This allows to use zsh as a shell in nix-shell, instead of defaulting to bash
-      # See https://github.com/chisui/zsh-nix-shell
       plugins = [
         {
           name = "zsh-nix-shell";
           file = "nix-shell.plugin.zsh";
-          # FIXME this should be flake input
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.6.0";
-            sha256 = "B0mdmIqefbm5H8wSG1h41c/J4shA186OyqvivmSK42Q=";
-          };
+          src = inputs.zsh-nix-shell.outPath;
         }
       ];
     };
