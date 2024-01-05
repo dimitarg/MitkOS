@@ -43,7 +43,6 @@
       pkgs.jetbrains.idea-ultimate
 
       # non-work
-      pkgs.webcamoid
       pkgs.spotify
       pkgs.vlc
 
