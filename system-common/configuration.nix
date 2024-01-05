@@ -2,41 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, hostSettings, ... }:
 
 {
-  
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./gpu-intel.nix
-    ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
-
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-d074f5e5-f947-43b3-9406-65fe6864d93e".device = "/dev/disk/by-uuid/d074f5e5-f947-43b3-9406-65fe6864d93e";
-  boot.initrd.luks.devices."luks-d074f5e5-f947-43b3-9406-65fe6864d93e".keyFile = "/crypto_keyfile.bin";
-
   # Use latest stable kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # this was originally added to fix suspend issues on Clevo; now common system config
   boot.kernelParams = [ "mem_sleep_default=deep" ];
   
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = hostSettings.hostName;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -142,13 +117,10 @@
   users.defaultUserShell = pkgs.zsh;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.fmap = {
+  users.users.${hostSettings.userName} = {
     isNormalUser = true;
-    description = "Dimitar Georgiev";
+    description = hostSettings.userFullName;
     extraGroups = [ "networkmanager" "wheel" "docker"];
-    packages = with pkgs; [
-    #  no need currently, as we currently manage these via home manager. If any global system packages needed, add them here.
-    ];
   };
   
   # Allow unfree packages
@@ -157,7 +129,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     openvpn
     curl
     killall

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, hostSettings, ... }:
 
 {
     
@@ -9,8 +9,8 @@
     ];
 
     # Home Manager needs a bit of information about us and the paths it should manage.
-    home.username = "fmap";
-    home.homeDirectory = "/home/fmap";
+    home.username = hostSettings.userName;
+    home.homeDirectory = "/home/${hostSettings.userName}";
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage

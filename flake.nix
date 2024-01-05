@@ -23,17 +23,27 @@
   outputs = { self, nixpkgs, home-manager, nur, ... } @ inputs : {
     
     nixosConfigurations = {
-      # By default, NixOS will try to refer the nixosConfiguration with its hostname.
 
       # Main laptop
-      "nixos" = nixpkgs.lib.nixosSystem {
+      "nixos" = let
+        hostSettings = {
+          hostName = "nixos";
+          userName = "fmap";
+          userFullName = "Dimitar Georgiev";
+        };
+      in nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
-        # specialArgs = {...};  # pass custom arguments into all sub module.
+        specialArgs = {
+          inherit hostSettings;
+        }; # pass custom arguments into all sub module.
         
         modules = [
           
-          ./hosts/nixos/configuration.nix
+          ./system-common/configuration.nix # common config
+          ./hosts/nixos/hardware-configuration.nix # hardware scan
+          ./hosts/nixos/from-install.nix # host-specific
+          ./hosts/nixos/gpu-intel.nix # hardware quirks specific to this laptop
 
           home-manager.nixosModules.home-manager
           {
@@ -44,13 +54,15 @@
 
             home-manager.extraSpecialArgs = {
               inherit inputs;
+              inherit hostSettings;
             };
 
-            home-manager.users.fmap = import ./home-manager/home.nix;
+            home-manager.users.${hostSettings.userName} = import ./home-manager/home.nix;
 
           }
         ];
       };
+      
     };
   };
 }
