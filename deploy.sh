@@ -2,9 +2,5 @@
 
 set -euo pipefail
 
-./copy-to-local.sh
+sudo nixos-rebuild switch --option allow-dirty false --flake .
 
-# Use HEAD commit title in the bootloader entry label
-# FIXME this breaks if there is whitespace in the commit message?!?
-export NIXOS_LABEL=$(git show -s --format=%s)
-sudo --preserve-env=NIXOS_LABEL nixos-rebuild switch --show-trace

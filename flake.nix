@@ -16,6 +16,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... } @ inputs : {
+    
     nixosConfigurations = {
       # By default, NixOS will try to refer the nixosConfiguration with its hostname.
 
@@ -27,7 +28,7 @@
         
         modules = [
           
-          ./configuration.nix
+          ./hosts/nixos/configuration.nix
 
           home-manager.nixosModules.home-manager
           {

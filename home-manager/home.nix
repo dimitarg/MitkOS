@@ -165,7 +165,7 @@
       ];
     };
 
-    home.file.".face".source = ./assets/profilepic.jpg;
+    home.file.".face".source = ../assets/profilepic.jpg;
 
     # Boilerplate for virt-manager first time setup
     dconf.settings = {
