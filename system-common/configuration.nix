@@ -232,6 +232,15 @@
       experimental-features = [ "nix-command" "flakes" ];
     };
 
+    # this is a flake system, disable nix channels
+    channel = {
+      enable = false;
+    };
+
+    # add system / flake nixpgs path to NIX_PATH to in an effort to ensure legacy CLI works
+    # Note this doesn't actually work, see https://discourse.nixos.org/t/disabling-channels-breaks-nix-path-resolution/34825
+    nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
+
     registry = {
       # this sets the system flake registry's nixpkgs to the nixpkgs used to build the NixOS distro
       # this ensures cli commands using the flake registry (such as `nix shell`) will reuse the same nixpkgs,
