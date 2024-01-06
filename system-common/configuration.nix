@@ -116,10 +116,10 @@
   programs.zsh.enable=true;
   users.defaultUserShell = pkgs.zsh;
   
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${hostSettings.userName} = {
     isNormalUser = true;
     description = hostSettings.userFullName;
+    initialPassword = hostSettings.userInitialPassword; # In case booting for the first time from a bootable ISO
     extraGroups = [ "networkmanager" "wheel" "docker"];
   };
   
