@@ -36,6 +36,7 @@
 
         specialArgs = {
           inherit hostSettings;
+          inherit inputs;
         }; # pass custom arguments into all sub module.
         
         modules = [

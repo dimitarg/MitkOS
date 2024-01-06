@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, hostSettings, ... }:
+{ config, pkgs, hostSettings, inputs, ... }:
 
 {
   # Use latest stable kernel
@@ -230,6 +230,13 @@
 
       #enable nix flakes
       experimental-features = [ "nix-command" "flakes" ];
+    };
+
+    registry = {
+      # this sets the system flake registry's nixpkgs to the nixpkgs used to build the NixOS distro
+      # this ensures cli commands using the flake registry (such as `nix shell`) will reuse the same nixpkgs,
+      # ensuring consistency and preventing unnecessary downloads
+      nixpkgs.flake = inputs.nixpkgs;
     };
   };
 
