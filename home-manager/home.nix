@@ -155,6 +155,20 @@
         pkgs.vscode-extensions.scala-lang.scala
         pkgs.vscode-extensions.haskell.haskell
       ];
+
+      enableUpdateCheck = false;
+      enableExtensionUpdateCheck = false;
+
+      userSettings = {
+        files.watcherExclude = {
+        "**/.bloop" = true;
+        "**/.metals" = true;
+        "**/.ammonite" = true;
+        };
+        editor.tabSize = 2;
+        metals.suggestLatestUpgrade = false;
+      };
+
     };
 
     home.file.".face".source = ../assets/profilepic.jpg;
