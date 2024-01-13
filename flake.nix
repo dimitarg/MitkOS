@@ -42,6 +42,8 @@
         modules = [
           
           ./system-common/configuration.nix # common config
+          ./system-common/modules/gaming.nix # steam
+
           ./hosts/nixos/hardware-configuration.nix # hardware scan
           ./hosts/nixos/from-install.nix # host-specific
           ./hosts/nixos/gpu-intel.nix # hardware quirks specific to this laptop
