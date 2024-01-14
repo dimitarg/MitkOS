@@ -122,3 +122,19 @@ Review that hardware configuration is looking okay, and/or make any adjustments 
 Specifically in this case,
 
 - we removed all filesystems and swap device references and replaced that with an import of `standard-fs-layout.nix`
+
+
+Then, (again on guest)
+
+```
+git config --global user.email "dimitar.georgiev.bg@gmail.com"
+git config --global user.name "Dimitar Georgiev"
+git add .
+git commit
+```
+
+Finally,
+
+```
+sudo nixos-install --flake .#virt-nixos
+```
