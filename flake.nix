@@ -26,16 +26,21 @@
 
       # Main laptop
       "nixos" = let
-        hostSettings = {
-          hostName = "nixos";
-          userName = "fmap";
-          userFullName = "Dimitar Georgiev";
+        osConfig = {
+          hostSettings = {
+            hostName = "nixos";
+            userName = "fmap";
+            userFullName = "Dimitar Georgiev";
+          };
+          virt-manager = {
+            enable = true;
+          };
         };
       in nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         specialArgs = {
-          inherit hostSettings;
+          inherit osConfig;
           inherit inputs;
         }; # pass custom arguments into all sub module.
         
@@ -57,10 +62,10 @@
 
             home-manager.extraSpecialArgs = {
               inherit inputs;
-              inherit hostSettings;
+              inherit osConfig;
             };
 
-            home-manager.users.${hostSettings.userName} = import ./home-manager/home.nix;
+            home-manager.users.${osConfig.hostSettings.userName} = import ./home-manager/home.nix;
 
           }
         ];

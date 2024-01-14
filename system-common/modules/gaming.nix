@@ -1,4 +1,4 @@
-{ config, pkgs, hostSettings, inputs, ... }:
+{ config, pkgs, osConfig, inputs, ... }:
 
 {
   programs.steam = {

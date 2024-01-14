@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, hostSettings, ... }:
+{ config, pkgs, inputs, osConfig, ... }:
 
 {
     
@@ -6,11 +6,12 @@
     imports = [
       # this module adds config.nur / config.nur.repos to config, used later
       inputs.nur.nixosModules.nur
+      ../system-common/modules/virt-manager/home.nix
     ];
 
     # Home Manager needs a bit of information about us and the paths it should manage.
-    home.username = hostSettings.userName;
-    home.homeDirectory = "/home/${hostSettings.userName}";
+    home.username = osConfig.hostSettings.userName;
+    home.homeDirectory = "/home/${osConfig.hostSettings.userName}";
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
@@ -172,14 +173,6 @@
     };
 
     home.file.".face".source = ../assets/profilepic.jpg;
-
-    # Boilerplate for virt-manager first time setup
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-          autoconnect = ["qemu:///system"];
-          uris = ["qemu:///system"];
-      };
-    };
 
 }
 

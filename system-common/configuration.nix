@@ -2,16 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, hostSettings, inputs, ... }:
+{ config, pkgs, osConfig, inputs, ... }:
 
 {
+  imports = [
+    modules/virt-manager/sys.nix
+  ];
+
   # Use latest stable kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # this was originally added to fix suspend issues on Clevo; now common system config
   boot.kernelParams = [ "mem_sleep_default=deep" ];
   
-  networking.hostName = hostSettings.hostName;
+  networking.hostName = osConfig.hostSettings.hostName;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -104,22 +108,15 @@
         dates = "weekly";
       };
     };
-
-    libvirtd = {
-      enable = true;
-    };
-  };
-
-  programs.virt-manager.enable = true;
-      
+  };      
 
   programs.zsh.enable=true;
   users.defaultUserShell = pkgs.zsh;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${hostSettings.userName} = {
+  users.users.${osConfig.hostSettings.userName} = {
     isNormalUser = true;
-    description = hostSettings.userFullName;
+    description = osConfig.hostSettings.userFullName;
     extraGroups = [ "networkmanager" "wheel" "docker"];
   };
   
