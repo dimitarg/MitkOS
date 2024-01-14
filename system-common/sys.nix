@@ -6,6 +6,7 @@
 
 {
   imports = [
+    modules/systemd-boot.nix
     modules/virt-manager/sys.nix
     modules/gaming.nix
   ];
