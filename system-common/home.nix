@@ -6,7 +6,7 @@
     imports = [
       # this module adds config.nur / config.nur.repos to config, used later
       inputs.nur.nixosModules.nur
-      ../system-common/modules/virt-manager/home.nix
+      modules/virt-manager/home.nix
     ];
 
     # Home Manager needs a bit of information about us and the paths it should manage.

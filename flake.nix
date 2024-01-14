@@ -46,7 +46,7 @@
         
         modules = [
           
-          ./system-common/configuration.nix # common config
+          ./system-common/sys.nix # common config
           ./system-common/modules/gaming.nix # steam
 
           ./hosts/nixos/hardware-configuration.nix # hardware scan
@@ -65,7 +65,7 @@
               inherit osConfig;
             };
 
-            home-manager.users.${osConfig.hostSettings.userName} = import ./home-manager/home.nix;
+            home-manager.users.${osConfig.hostSettings.userName} = import ./system-common/home.nix;
 
           }
         ];
