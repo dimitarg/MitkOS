@@ -7,6 +7,7 @@
 {
   imports = [
     modules/virt-manager/sys.nix
+    modules/gaming.nix
   ];
 
   # Use latest stable kernel

@@ -35,6 +35,9 @@
           virt-manager = {
             enable = true;
           };
+          gaming = {
+            enable = true;
+          };
         };
       in nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -47,7 +50,6 @@
         modules = [
           
           ./system-common/sys.nix # common config
-          ./system-common/modules/gaming.nix # steam
 
           ./hosts/nixos/hardware-configuration.nix # hardware scan
           ./hosts/nixos/from-install.nix # host-specific
