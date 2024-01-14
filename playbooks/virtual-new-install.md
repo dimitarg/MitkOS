@@ -1,6 +1,6 @@
 # Description
 
-This lays out manual steps to install a new MitkOS system on virt-manager, and version it in the MitkOS repo.
+This lays out manual steps we performed to install a new MitkOS system on virt-manager from scratch, and version it in the MitkOS repo.
 
 # Prerequisites
 
@@ -87,17 +87,10 @@ At this point, our partitions (in the example) are
 
 ### Get MitkOS
 
-On the guest, make sure repo can be accessed:
-
-```
-nix-shell -p git
-git clone https://github.com/dimitarg/MitkOS.git
-```
-
 
 On the host / build box, create a new nixos configuration for the guest.
 
-`git checkout virtual-manager-install`
+`git checkout -B virtual-manager-install`
 
 ... then add needed corresponding changes to flake.nix, but don't provide host-specific (`hosts/foo`) config, we'll do that on guest.
 
@@ -105,4 +98,27 @@ On the host / build box, create a new nixos configuration for the guest.
 # add stuff ... then
 git add .
 git commit -m "wip"
+git push
 ```
+
+On the guest, make sure repo can be accessed:
+
+```
+nix-shell -p git
+git clone https://github.com/dimitarg/MitkOS.git
+```
+
+On the guest machine,
+
+```
+git pull
+git checkout virtual-manager-install
+mkdir hosts/virt-nixos # or however we named the new host in the flake
+cd hosts/virt-nixos
+nixos-generate-config --show-hardware-config > hardware-configuration.nix
+```
+
+Review that hardware configuration is looking okay, and/or make any adjustments if necessary.
+Specifically in this case,
+
+- we removed all filesystems and swap device references and replaced that with an import of `standard-fs-layout.nix`
