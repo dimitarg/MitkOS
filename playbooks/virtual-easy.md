@@ -47,5 +47,5 @@ git commit
 and
 
 ```
-sudo nixos-install --flake .#virt-nixos
+sudo nixos-rebuild switch --flake .#virt-nixos
 ```
