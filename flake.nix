@@ -54,6 +54,7 @@
           ./hosts/nixos/hardware-configuration.nix # hardware scan
           ./hosts/nixos/from-install.nix # host-specific
           ./hosts/nixos/gpu-intel.nix # hardware quirks specific to this laptop
+          ./system-common/modules/intel-laptop.nix # settings that make sense for a laptop running with an intel CPU
 
           home-manager.nixosModules.home-manager
           {
