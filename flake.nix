@@ -4,6 +4,8 @@
   inputs = {
     # this tracks nixos-unstable, as opposed to master, which would cause breakage
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # NixOS profiles to optimize settings for different hardware.
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # home-manager, used for managing user configuration
     home-manager = {
       # home-manager master is built against nixos-unstable, so this is correct
