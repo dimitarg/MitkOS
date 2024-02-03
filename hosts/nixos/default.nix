@@ -4,8 +4,8 @@
   imports = [
     ./hardware-configuration.nix
     ./from-install.nix
-    ./gpu-intel.nix
     ../../system-common/modules/intel-laptop.nix
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
   ];
 
 }
