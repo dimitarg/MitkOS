@@ -65,8 +65,10 @@
   # reboot
   # (source: https://discourse.nixos.org/t/problem-with-xkboptions-it-doesnt-seem-to-take-effect/5269?u=jtojnar)
   services.xserver = {
-    layout = "us,bg";
-    xkbVariant = ",phonetic";
+    xkb = {
+      layout = "us,bg";
+      variant = ",phonetic";
+    };
   };
 
   # Enable CUPS to print documents.
