@@ -1,7 +1,11 @@
 { config, lib, pkgs, osConfig, inputs, ... }:
 
 {
-  services.power-profiles-daemon.enable = false; # not recommended to use power-profiles-daemon together with tlp
+  # not recommended to use power-profiles-daemon together with tlp
+  # additionally, this also comes with a UI switch to select between performance / balanced / powersave,
+  # whereas we would prefer an UX where plugging or unplugging the AC cable "does the right thing"
+  services.power-profiles-daemon.enable = false;
+
   services.tlp = {
     enable = true;
     settings = {
