@@ -50,7 +50,7 @@
       pkgs.vlc
 
       pkgs.libreoffice
-      pkgs.libsForQt5.okular
+      pkgs.okular
 
     ];
 
