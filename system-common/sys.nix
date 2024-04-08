@@ -91,6 +91,11 @@
     #media-session.enable = true;
   };
 
+  # mic noise cancellation
+  programs.noisetorch = {
+    enable = true;
+  };
+
   
   # smart card daemon
   services.pcscd = {
