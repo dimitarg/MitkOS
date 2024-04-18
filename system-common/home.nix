@@ -52,6 +52,8 @@
       pkgs.libreoffice
       pkgs.okular
 
+      pkgs.transmission-gtk
+
     ];
 
 
