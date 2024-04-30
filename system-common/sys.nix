@@ -105,7 +105,7 @@
 
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
   
   
   # enable docker. This will auto-start dockerd
