@@ -74,8 +74,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -148,25 +146,25 @@
 
   # exclude some packages that I don't use from the default GUI distro
  environment.gnome.excludePackages = with pkgs.gnome; [
-   cheese      # photo booth
-   epiphany    # web browser
+   pkgs.cheese      # photo booth
+   pkgs.epiphany    # web browser
    pkgs.gedit       # text editor, not needed as we have vscode and nano
    pkgs.gnome-text-editor
    # totem       # video player
    # evince      # document viewer
-   geary       # email client
-   seahorse    # password manager
+   pkgs.geary       # email client
+   pkgs.seahorse    # password manager
    # gnome-calculator gnome-calendar  gnome-clocks
    gnome-contacts
    gnome-maps
    # gnome-music
    pkgs.gnome-photos
    gnome-weather
-   yelp
+   pkgs.yelp
    # gnome-disk-utility pkgs.gnome-connections
    pkgs.gnome-tour
    gnome-characters
-   gnome-font-viewer
+   pkgs.gnome-font-viewer
  ];
 
   services.xserver.excludePackages = [
