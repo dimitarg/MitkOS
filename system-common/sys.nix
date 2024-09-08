@@ -155,15 +155,15 @@
    pkgs.geary       # email client
    pkgs.seahorse    # password manager
    # gnome-calculator gnome-calendar  gnome-clocks
-   gnome-contacts
-   gnome-maps
+   pkgs.gnome-contacts
+   pkgs.gnome-maps
    # gnome-music
    pkgs.gnome-photos
-   gnome-weather
+   pkgs.gnome-weather
    pkgs.yelp
    # gnome-disk-utility pkgs.gnome-connections
    pkgs.gnome-tour
-   gnome-characters
+   pkgs.gnome-characters
    pkgs.gnome-font-viewer
  ];
 
