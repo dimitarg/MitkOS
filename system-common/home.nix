@@ -162,7 +162,7 @@
         pkgs.vscode-extensions.scala-lang.scala
         pkgs.vscode-extensions.haskell.haskell
         pkgs.vscode-extensions.rust-lang.rust-analyzer
-        pkgs.vscode-extensions.bungcip.better-toml
+        pkgs.vscode-extensions.tamasfe.even-better-toml
       ];
 
       enableUpdateCheck = false;
