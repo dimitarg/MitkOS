@@ -163,6 +163,11 @@
         pkgs.vscode-extensions.haskell.haskell
         pkgs.vscode-extensions.rust-lang.rust-analyzer
         pkgs.vscode-extensions.tamasfe.even-better-toml
+        pkgs.vscode-extensions.k--kato.intellij-idea-keybindings
+        # these are missing in nixpkgs
+        # could be fixed via nix-community/nix-vscode-extensions
+        # pkgs.vscode-extensions.buenon.scratchpads
+        # pkgs.vscode-extensions.unison-lang.unison
       ];
 
       enableUpdateCheck = false;
