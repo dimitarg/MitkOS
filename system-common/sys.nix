@@ -9,6 +9,7 @@
     modules/systemd-boot.nix
     modules/virt-manager/sys.nix
     modules/gaming.nix
+    modules/guest-user/sys.nix
   ];
 
   # Use latest stable kernel

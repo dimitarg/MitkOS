@@ -44,12 +44,18 @@
             enable = true;
           };
         };
+        guestUserConfig = {
+          enable = true;
+          userName = "derpina";
+          userFullName = "Derpina";
+        };
       in nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         specialArgs = {
           inherit osConfig;
           inherit inputs;
+          inherit guestUserConfig;
         }; # pass custom arguments into all sub module.
         
         modules = [
@@ -67,9 +73,12 @@
             home-manager.extraSpecialArgs = {
               inherit inputs;
               inherit osConfig;
+              inherit guestUserConfig;
             };
 
             home-manager.users.${osConfig.hostSettings.userName} = import ./system-common/home.nix;
+
+            home-manager.users.${guestUserConfig.userName} = import ./system-common/modules/guest-user/home.nix;
 
           }
         ];
