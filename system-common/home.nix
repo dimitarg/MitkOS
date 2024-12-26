@@ -169,13 +169,13 @@
       enableExtensionUpdateCheck = false;
 
       userSettings = {
-        files.watcherExclude = {
+        "files.watcherExclude" = {
         "**/.bloop" = true;
         "**/.metals" = true;
         "**/.ammonite" = true;
         };
-        editor.tabSize = 2;
-        metals.suggestLatestUpgrade = false;
+        "editor.tabSize" = 2;
+        "metals.suggestLatestUpgrade" = false;
       };
 
     };
