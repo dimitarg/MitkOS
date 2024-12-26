@@ -2,10 +2,7 @@
 
 {
     
-    # access to additional packages not in nixpkgs via https://github.com/nix-community/NUR
     imports = [
-      # this module adds config.nur / config.nur.repos to config, used later
-      inputs.nur.nixosModules.nur
       modules/virt-manager/home.nix
     ];
 
@@ -78,10 +75,10 @@
           "media.ffmpeg.vaapi.enabled" = true;
         };
 
-        extensions = [
-          config.nur.repos.rycee.firefox-addons.lastpass-password-manager
-          config.nur.repos.rycee.firefox-addons.privacy-badger
-          config.nur.repos.rycee.firefox-addons.ublock-origin
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          lastpass-password-manager
+          privacy-badger
+          ublock-origin
         ];
       };
 
