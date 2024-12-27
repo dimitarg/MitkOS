@@ -23,6 +23,12 @@
       url = "github:chisui/zsh-nix-shell";
       flake = false;
     };
+
+    # Workaround for https://github.com/NixOS/nixpkgs/issues/171054
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... } @ inputs : {

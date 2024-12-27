@@ -6,6 +6,7 @@
 
 {
   imports = [
+    inputs.nix-index-database.nixosModules.nix-index
     modules/systemd-boot.nix
     modules/virt-manager/sys.nix
     modules/gaming.nix
@@ -120,6 +121,8 @@
 
   programs.zsh.enable=true;
   users.defaultUserShell = pkgs.zsh;
+
+  programs.nix-index.enable = true;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${osConfig.hostSettings.userName} = {
