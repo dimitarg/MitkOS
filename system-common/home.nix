@@ -88,6 +88,12 @@
             "CAC Module" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
           };
         };
+        EnableTrackingProtection = {
+          Value= true;
+          Cryptomining = true;
+          Fingerprinting = true;
+          EmailTracking = true;
+        };
       };
       
     };
