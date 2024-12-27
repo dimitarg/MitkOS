@@ -63,7 +63,7 @@
       ];
     };
 
-    # home.file.".face".source = ../assets/profilepic.jpg;
+    home.file.".face".source = ../../../assets/derpina.jpg;
 
 }
 
