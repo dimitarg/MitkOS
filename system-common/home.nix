@@ -143,7 +143,6 @@
       enableZshIntegration = true;
     };
 
-
     programs.git = {
       enable = true;
       userName = "Dimitar Georgiev";
@@ -166,6 +165,7 @@
         pkgs.vscode-extensions.rust-lang.rust-analyzer
         pkgs.vscode-extensions.tamasfe.even-better-toml
         pkgs.vscode-extensions.k--kato.intellij-idea-keybindings
+        pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
         # these are missing in nixpkgs
         # could be fixed via nix-community/nix-vscode-extensions
         # pkgs.vscode-extensions.buenon.scratchpads
@@ -183,6 +183,14 @@
         };
         "editor.tabSize" = 2;
         "metals.suggestLatestUpgrade" = false;
+        "cSpell.userWords" = [
+          "usecase"
+          "usecases"
+          "RDBMS"
+          "Mailgun"
+          "PosgtreSQL"
+        ];
+        "cSpell.language" = "en-GB";
       };
 
     };
