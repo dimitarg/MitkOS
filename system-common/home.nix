@@ -48,7 +48,8 @@
 
       pkgs.libreoffice
       pkgs.okular
-      pkgs.shotwell
+
+      pkgs.sly
 
       pkgs.transmission_4-gtk
 

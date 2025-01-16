@@ -27,7 +27,6 @@
       pkgs.vlc
       
       pkgs.okular
-      pkgs.shotwell
       pkgs.transmission_4-gtk
     ];
 
