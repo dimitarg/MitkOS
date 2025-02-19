@@ -163,10 +163,14 @@
         pkgs.vscode-extensions.scalameta.metals
         pkgs.vscode-extensions.scala-lang.scala
         pkgs.vscode-extensions.haskell.haskell
-        pkgs.vscode-extensions.rust-lang.rust-analyzer
+
+        # uncomment once https://github.com/NixOS/nixpkgs/pull/383049 gets resolved
+        # pkgs.vscode-extensions.rust-lang.rust-analyzer
+        
         pkgs.vscode-extensions.tamasfe.even-better-toml
         pkgs.vscode-extensions.k--kato.intellij-idea-keybindings
         pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
+        pkgs.vscode-extensions.disneystreaming.smithy
         # these are missing in nixpkgs
         # could be fixed via nix-community/nix-vscode-extensions
         # pkgs.vscode-extensions.buenon.scratchpads
