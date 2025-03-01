@@ -26,7 +26,7 @@
       pkgs.spotify
       pkgs.vlc
       
-      pkgs.okular
+      pkgs.kdePackages.okular
       pkgs.transmission_4-gtk
     ];
 

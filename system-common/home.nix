@@ -47,7 +47,7 @@
       pkgs.vlc
 
       pkgs.libreoffice
-      pkgs.okular
+      pkgs.kdePackages.okular
 
       pkgs.sly
 
@@ -76,11 +76,13 @@
           "media.ffmpeg.vaapi.enabled" = true;
         };
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          lastpass-password-manager
-          privacy-badger
-          ublock-origin
-        ];
+        extensions = {
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            lastpass-password-manager
+            privacy-badger
+            ublock-origin
+          ];
+        };
       };
 
       policies = {
@@ -158,44 +160,47 @@
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = [
-        pkgs.vscode-extensions.bbenoist.nix
-        pkgs.vscode-extensions.scalameta.metals
-        pkgs.vscode-extensions.scala-lang.scala
-        pkgs.vscode-extensions.haskell.haskell
 
-        # uncomment once https://github.com/NixOS/nixpkgs/pull/383049 gets resolved
-        # pkgs.vscode-extensions.rust-lang.rust-analyzer
-        
-        pkgs.vscode-extensions.tamasfe.even-better-toml
-        pkgs.vscode-extensions.k--kato.intellij-idea-keybindings
-        pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
-        pkgs.vscode-extensions.disneystreaming.smithy
-        # these are missing in nixpkgs
-        # could be fixed via nix-community/nix-vscode-extensions
-        # pkgs.vscode-extensions.buenon.scratchpads
-        # pkgs.vscode-extensions.unison-lang.unison
-      ];
+      profiles.default = {
+        extensions = [
+          pkgs.vscode-extensions.bbenoist.nix
+          pkgs.vscode-extensions.scalameta.metals
+          pkgs.vscode-extensions.scala-lang.scala
+          pkgs.vscode-extensions.haskell.haskell
 
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = false;
-
-      userSettings = {
-        "files.watcherExclude" = {
-        "**/.bloop" = true;
-        "**/.metals" = true;
-        "**/.ammonite" = true;
-        };
-        "editor.tabSize" = 2;
-        "metals.suggestLatestUpgrade" = false;
-        "cSpell.userWords" = [
-          "usecase"
-          "usecases"
-          "RDBMS"
-          "Mailgun"
-          "PosgtreSQL"
+          pkgs.vscode-extensions.rust-lang.rust-analyzer
+          
+          pkgs.vscode-extensions.tamasfe.even-better-toml
+          pkgs.vscode-extensions.k--kato.intellij-idea-keybindings
+          pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
+          pkgs.vscode-extensions.disneystreaming.smithy
+          # these are missing in nixpkgs
+          # could be fixed via nix-community/nix-vscode-extensions
+          # pkgs.vscode-extensions.buenon.scratchpads
+          # pkgs.vscode-extensions.unison-lang.unison
         ];
-        "cSpell.language" = "en-GB";
+
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
+
+        userSettings = {
+          "files.watcherExclude" = {
+          "**/.bloop" = true;
+          "**/.metals" = true;
+          "**/.ammonite" = true;
+          };
+          "editor.tabSize" = 2;
+          "metals.suggestLatestUpgrade" = false;
+          "cSpell.userWords" = [
+            "usecase"
+            "usecases"
+            "RDBMS"
+            "Mailgun"
+            "PosgtreSQL"
+          ];
+          "cSpell.language" = "en-GB";
+        };
+      
       };
 
     };
