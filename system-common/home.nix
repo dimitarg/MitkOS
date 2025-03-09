@@ -68,12 +68,39 @@
         isDefault = true;
 
         settings = {
+
+          "browser.aboutConfig.showWarning" = false;
+
           "dom.security.https_only_mode" = true;
           # disables firefox password manager as we use an external one
           "signon.rememberSignons" = false;
           "privacy.donottrackheader.enabled" = true;
+          "browser.contentblocking.category" = "strict";
           # video hardware accerelation using vaapi
           "media.ffmpeg.vaapi.enabled" = true;
+
+          "browser.newtabpage.activity-stream.showSponsored" =  false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
+          "extensions.getAddons.showPane" = false;
+          "extensions.htmlaboutaddons.recommendations.enabled" = false;
+
+          "browser.discovery.enabled" =  false;
+
+          "browser.newtabpage.activity-stream.feeds.telemetry" =  false;
+          "browser.newtabpage.activity-stream.telemetry" = false;
+
+          "app.shield.optoutstudies.enabled" = false;
+          /* 0341: disable Normandy/Shield [FF60+]
+          * Shield is a telemetry system that can push and test "recipes"
+          * [1] https://mozilla.github.io/normandy/ ***/
+          "app.normandy.enabled" = false;
+          "app.normandy.api_url" = "";
+
+          "security.ssl.require_safe_negotiation" = true;
+
+          # TODO consider https://github.com/arkenfox/user.js/blob/3d76c74c80485931425464fec0e59d6cb461677a/user.js#L1175 
+          # For now, give Mozilla benefit of doubt
         };
 
         extensions = {
