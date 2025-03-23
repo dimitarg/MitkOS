@@ -217,7 +217,13 @@
           "**/.ammonite" = true;
           };
           "editor.tabSize" = 2;
+
           "metals.suggestLatestUpgrade" = false;
+          "metals.bloopJvmProperties" = [
+            "-Xms2G"
+            "-Xmx8G"
+          ];
+          
           "cSpell.userWords" = [
             "usecase"
             "usecases"
