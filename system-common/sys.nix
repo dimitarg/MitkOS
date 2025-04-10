@@ -91,11 +91,6 @@
     #media-session.enable = true;
   };
 
-  # mic noise cancellation
-  programs.noisetorch = {
-    enable = true;
-  };
-
   
   # smart card daemon
   services.pcscd = {
@@ -157,20 +152,22 @@
  environment.gnome.excludePackages = with pkgs.gnome; [
    pkgs.cheese      # photo booth
    pkgs.epiphany    # web browser
-   pkgs.gedit       # text editor, not needed as we have vscode and nano
-   pkgs.gnome-text-editor
-   # totem       # video player
-   # evince      # document viewer
-   pkgs.geary       # email client
+
+   pkgs.gedit       # text editors, not needed as we have vscode and nano
+   pkgs.gnome-text-editor # TODO these might be needed for non-techie users that don't use an ide and console
+
+   pkgs.geary       # email client. Probably use Thunderbird if we need one.
    pkgs.seahorse    # password manager
+
    # gnome-calculator gnome-calendar  gnome-clocks
    pkgs.gnome-contacts
    pkgs.gnome-maps
+
    # gnome-music
    pkgs.gnome-photos
    pkgs.gnome-weather
    pkgs.yelp
-   # gnome-disk-utility pkgs.gnome-connections
+   
    pkgs.gnome-tour
    pkgs.gnome-characters
    pkgs.gnome-font-viewer

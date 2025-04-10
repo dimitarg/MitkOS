@@ -49,12 +49,7 @@
       pkgs.libreoffice
       pkgs.kdePackages.okular
 
-      pkgs.sly
-
       pkgs.transmission_4-gtk
-
-      # run programs in a FHS environment
-      pkgs.steam-run
 
     ];
 
