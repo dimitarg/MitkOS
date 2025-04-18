@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, osConfig, ... }:
+{ config, pkgs, inputs, osConfig, system, ... }:
 
 {
     
@@ -47,10 +47,11 @@
       pkgs.vlc
 
       pkgs.libreoffice
+
+      # installed because it's capable of signing PDFs with a digital certificate
       pkgs.kdePackages.okular
 
       pkgs.transmission_4-gtk
-
     ];
 
 

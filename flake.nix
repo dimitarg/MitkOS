@@ -56,8 +56,10 @@
           userName = "derpina";
           userFullName = "Derpina";
         };
-      in nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        
+      in nixpkgs.lib.nixosSystem {
+        inherit system;
 
         specialArgs = {
           inherit osConfig;
@@ -81,6 +83,7 @@
               inherit inputs;
               inherit osConfig;
               inherit guestUserConfig;
+              inherit system;
             };
 
             home-manager.users.${osConfig.hostSettings.userName} = import ./system-common/home.nix;
