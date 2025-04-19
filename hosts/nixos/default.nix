@@ -13,7 +13,26 @@
     # this profile also enables the intel alder lake GPU profile
     # notably it switches the driver to `intel-media-driver`
     "${inputs.nixos-hardware}/common/cpu/intel/alder-lake" 
+
   ];
+
+  # this switches to `xe` (newer gen) from i915 default
+  # hardware.intelgpu.driver = "xe";
+
+
+  # but then: 
+
+  # xe 0000:00:02.0: Your graphics device 46a6 is not officially supported
+  # by xe driver in this kernel version. To force Xe probe,
+  # use .force_probe='46a6' and i915.force_probe='!46a6'
+  # module parameters or CONFIG_DRM_XE_FORCE_PROBE='46a6' and
+  # CONFIG_DRM_I915_FORCE_PROBE='!46a6' configuration options.
+
+
+  # so I did:
+  # boot.kernelParams = [ "i915.force_probe=!46a6" "xe.force_probe=46a6" ];
+
+  # but then I experienced a noticeable screen tear during stage 1 boot, and convinced myself this is not a good idea.
 
 }
 
