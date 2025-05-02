@@ -3,14 +3,8 @@
 { config, pkgs, ... }:
 
 {
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
 
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-d074f5e5-f947-43b3-9406-65fe6864d93e".device = "/dev/disk/by-uuid/d074f5e5-f947-43b3-9406-65fe6864d93e";
-  boot.initrd.luks.devices."luks-d074f5e5-f947-43b3-9406-65fe6864d93e".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-1acf76b6-03eb-4e91-a8dd-3d4e834b568f".device = "/dev/disk/by-uuid/1acf76b6-03eb-4e91-a8dd-3d4e834b568f";
 }

@@ -41,7 +41,7 @@
         osConfig = {
           hostSettings = {
             hostName = "nixos";
-            userName = "fmap";
+            userName = "imap";
             userFullName = "Dimitar Georgiev";
           };
           virt-manager = {
@@ -79,6 +79,8 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
+            home-manager.backupFileExtension = "backup";
+
             home-manager.extraSpecialArgs = {
               inherit inputs;
               inherit osConfig;
@@ -99,7 +101,7 @@
         osConfig = {
           hostSettings = {
             hostName = "virt-nixos";
-            userName = "fmap";
+            userName = "imap";
             userFullName = "Dimitar Georgiev";
           };
           virt-manager = {
