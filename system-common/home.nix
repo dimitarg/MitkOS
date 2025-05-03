@@ -236,5 +236,14 @@
 
     home.file.".face".source = ../assets/profilepic.jpg;
 
+    dconf.settings = {
+      "org.gnome.desktop.input-sources" = {
+        "sources" = [
+          (pkgs.lib.gvariant.mkTuple [ "xkb" "us" ])
+          (pkgs.lib.gvariant.mkTuple [ "xkb" "bg+phonetic" ])
+        ];
+      };
+    };
+
 }
 
