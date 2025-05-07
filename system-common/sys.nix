@@ -185,9 +185,6 @@
   # add zsh to GDM shells
   environment.shells = with pkgs; [ zsh ];
 
-  # this is a hardcoded path to where I keep openvpn configs that are managed outside nix store
-  # make sure update-resolv-conf exists in that path, as it may be used by some ovpn configs
-  environment.etc."openvpn_configs/update-resolv-conf".source = "${pkgs.update-resolv-conf}/libexec/openvpn/update-resolv-conf";
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
