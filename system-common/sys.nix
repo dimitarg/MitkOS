@@ -145,6 +145,9 @@
     pcsclite
     ccid
     opensc
+
+    # nix packages version diff tool
+    nvd
   ];
 
 
