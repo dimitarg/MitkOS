@@ -9,6 +9,8 @@
   services.tlp = {
     enable = true;
     settings = {
+      # default is balance-power. see https://linrunner.de/tlp/settings/processor.html
+      # i've not measured this actually achieves anything - we might retire this non-default setting in the future.
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
     };
