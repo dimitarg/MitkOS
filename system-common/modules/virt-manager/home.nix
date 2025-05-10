@@ -9,5 +9,9 @@
           uris = ["qemu:///system"];
        };
      };
+
+     home.packages = [
+        pkgs.gnome-boxes
+     ];
    };
 }
