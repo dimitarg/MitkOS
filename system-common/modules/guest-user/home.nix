@@ -23,6 +23,7 @@
       enable = true;
       defaultApplications = {
         "application/pdf" = ["org.gnome.Papers.desktop"];
+        "text/plain" = ["org.gnome.TextEditor.desktop"];
       };
     };
 

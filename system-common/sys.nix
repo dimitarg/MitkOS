@@ -156,8 +156,12 @@
    pkgs.cheese      # photo booth
    pkgs.epiphany    # web browser
 
-   pkgs.gedit       # text editors, not needed as we have vscode and nano
-   pkgs.gnome-text-editor # TODO these might be needed for non-techie users that don't use an ide and console
+   pkgs.gedit       # text editors, not needed as we have vscode and nano and gnome-text-editor
+
+   #  we're no longer removing this as it's a default editor for non-techies
+   #  if absent, text files open in LibreOffice writer or some other random program, which is horrible UX 
+   # pkgs.gnome-text-editor
+   
 
    pkgs.geary       # email client. Probably use Thunderbird if we need one.
    pkgs.seahorse    # password manager
