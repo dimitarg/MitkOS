@@ -174,6 +174,9 @@
    pkgs.gnome-tour
    pkgs.gnome-characters
    pkgs.gnome-font-viewer
+
+   # gnome pdf viewer, removed since we use `papers`
+   pkgs.evince
  ];
 
   services.xserver.excludePackages = [

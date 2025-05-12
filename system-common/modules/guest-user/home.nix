@@ -19,6 +19,13 @@
 
     xdg.enable = true;
 
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = ["org.gnome.Papers.desktop"];
+      };
+    };
+
     home.packages = [
 
       pkgs.google-chrome
@@ -26,7 +33,9 @@
       pkgs.spotify
       pkgs.vlc
       
-      pkgs.kdePackages.okular
+      # gtk4 pdf viewer, can sign PDFs via digital certs
+      pkgs.papers
+
       pkgs.transmission_4-gtk
     ];
 

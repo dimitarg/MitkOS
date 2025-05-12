@@ -23,6 +23,13 @@
 
     xdg.enable = true;
 
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = ["org.gnome.Papers.desktop"];
+      };
+    };
+
     home.packages = [
       
       pkgs.htop
@@ -48,8 +55,8 @@
 
       pkgs.libreoffice
 
-      # installed because it's capable of signing PDFs with a digital certificate
-      pkgs.kdePackages.okular
+      # gtk4 pdf viewer, can sign PDFs via digital certs
+      pkgs.papers
 
       pkgs.transmission_4-gtk
     ];
@@ -124,9 +131,9 @@
       
     };
 
-    programs.chromium = {
-      enable = true;
-    };
+    # programs.chromium = {
+    #   enable = true;
+    # };
 
     programs.zsh = {
       enable = true;
