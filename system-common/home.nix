@@ -31,6 +31,8 @@
       };
     };
 
+    xdg.desktopEntries.htop.noDisplay = true;
+
     home.packages = [
       
       pkgs.htop
