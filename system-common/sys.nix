@@ -58,6 +58,11 @@
   '';
 
 };
+fonts.packages = [
+  ## installs nerd-fonts ligatures to be used in Starship
+  ## TODO gnome 48 - need to do anything?
+  pkgs.nerd-fonts.iosevka-term 
+];
 
   # Configure keymap
   # Unfortunately this only gets picked up on initial setup. If you
@@ -118,6 +123,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${osConfig.hostSettings.userName} = {
@@ -148,6 +154,9 @@
 
     # nix packages version diff tool
     nvd
+
+    # run program without installing ti, by typing `, <program>`
+    comma
   ];
 
 
