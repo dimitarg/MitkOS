@@ -122,7 +122,9 @@ fonts.packages = [
   programs.zsh.enable=true;
   users.defaultUserShell = pkgs.zsh;
 
+  # command-not-found support
   programs.nix-index.enable = true;
+  # run program without installing ti, by typing `, <program>`
   programs.nix-index-database.comma.enable = true;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -155,8 +157,6 @@ fonts.packages = [
     # nix packages version diff tool
     nvd
 
-    # run program without installing ti, by typing `, <program>`
-    comma
   ];
 
 
