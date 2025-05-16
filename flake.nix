@@ -96,6 +96,61 @@
         ];
       };
 
+      # Spare hardware
+      "spare" = let
+        osConfig = {
+          hostSettings = {
+            hostName = "spare";
+            userName = "fmap";
+            userFullName = "Dimitar Georgiev";
+          };
+          virt-manager = {
+            enable = true;
+          };
+          gaming = {
+            enable = false;
+          };
+        };
+        guestUserConfig = {
+          enable = false;
+        };
+        system = "x86_64-linux";
+        
+      in nixpkgs.lib.nixosSystem {
+        inherit system;
+
+        specialArgs = {
+          inherit osConfig;
+          inherit inputs;
+          inherit guestUserConfig;
+        }; # pass custom arguments into all sub module.
+        
+        modules = [
+          
+          ./system-common/sys.nix # common config
+          ./hosts/spare
+
+          home-manager.nixosModules.home-manager
+          {
+            # see https://discourse.nixos.org/t/home-manager-useuserpackages-useglobalpkgs-settings/34506/3
+            # basically, true / true the sane defaults if the system is a NixOS system
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              inherit osConfig;
+              inherit guestUserConfig;
+              inherit system;
+            };
+
+            home-manager.users.${osConfig.hostSettings.userName} = import ./system-common/home.nix;
+          }
+        ];
+      };
+
       # Virtual manager test machine provisioned via playbooks/virtual-new-install.nix
       "virt-nixos" = let
         osConfig = {
