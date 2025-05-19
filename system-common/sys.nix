@@ -60,8 +60,7 @@
 };
 fonts.packages = [
   ## installs nerd-fonts ligatures to be used in Starship
-  ## TODO gnome 48 - need to do anything?
-  pkgs.nerd-fonts.iosevka-term 
+  pkgs.nerd-fonts.adwaita-mono 
 ];
 
   # Configure keymap
