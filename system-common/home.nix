@@ -225,6 +225,8 @@
           "**/.ammonite" = true;
           };
           "editor.tabSize" = 2;
+          "editor.fontFamily" = "'AdwaitaMono Nerd Font'";
+          "editor.fontLigatures" = true;
 
           "metals.suggestLatestUpgrade" = false;
           "metals.bloopJvmProperties" = [
