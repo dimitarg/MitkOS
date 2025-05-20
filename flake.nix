@@ -88,8 +88,6 @@
 
             home-manager.users.${osConfig.hostSettings.userName} = import ./system-common/home.nix;
 
-            home-manager.users.${guestUserConfig.userName} = import ./system-common/modules/guest-user/home.nix;
-
           }
         ];
       };
