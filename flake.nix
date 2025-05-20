@@ -52,9 +52,7 @@
           };
         };
         guestUserConfig = {
-          enable = true;
-          userName = "derpina";
-          userFullName = "Derpina";
+          enable = false;
         };
         system = "x86_64-linux";
         
