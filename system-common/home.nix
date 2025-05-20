@@ -229,10 +229,13 @@
           "editor.fontLigatures" = true;
 
           "metals.suggestLatestUpgrade" = false;
+          
           "metals.bloopJvmProperties" = [
             "-Xms2G"
             "-Xmx8G"
           ];
+
+          "metals.defaultBspToBuildTool" = true;
           
           "cSpell.userWords" = [
             "usecase"
