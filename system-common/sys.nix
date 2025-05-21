@@ -28,18 +28,18 @@
   time.timeZone = "Europe/Sofia";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.utf8";
+  i18n.defaultLocale = "en_GB.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "bg_BG.utf8";
-    LC_IDENTIFICATION = "bg_BG.utf8";
-    LC_MEASUREMENT = "bg_BG.utf8";
-    LC_MONETARY = "bg_BG.utf8";
-    LC_NAME = "bg_BG.utf8";
-    LC_NUMERIC = "bg_BG.utf8";
-    LC_PAPER = "bg_BG.utf8";
-    LC_TELEPHONE = "bg_BG.utf8";
-    LC_TIME = "bg_BG.utf8";
+    LC_ADDRESS = "bg_BG.UTF8";
+    LC_IDENTIFICATION = "bg_BG.UTF8";
+    LC_MEASUREMENT = "bg_BG.UTF8";
+    LC_MONETARY = "bg_BG.UTF8";
+    LC_NAME = "bg_BG.UTF8";
+    LC_NUMERIC = "bg_BG.UTF8";
+    LC_PAPER = "bg_BG.UTF8";
+    LC_TELEPHONE = "bg_BG.UTF8";
+    LC_TIME = "bg_BG.UTF8";
   };
 
   # Enable the X11 windowing system.
