@@ -30,6 +30,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }
+
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... } @ inputs : {
@@ -145,6 +150,16 @@
           ./hosts/spare
 
           home-manager.nixosModules.home-manager hmConfig
+        ];
+      };
+
+      # Hetzner headless dedicated server, AMD x86_64
+      "cloudy" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./hosts/cloudy/configuration.nix
+          ./hosts/cloudy/hardware-configuration.nix
         ];
       };
       
