@@ -147,53 +147,6 @@
           }
         ];
       };
-
-      # Virtual manager test machine provisioned via playbooks/virtual-new-install.nix
-      "virt-nixos" = let
-        osConfig = {
-          hostSettings = {
-            hostName = "virt-nixos";
-            userName = "imap";
-            userFullName = "Dimitar Georgiev";
-          };
-          virt-manager = {
-            enable = false;
-          };
-          gaming = {
-            enable = false;
-          };
-        };
-      in nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        specialArgs = {
-          inherit osConfig;
-          inherit inputs;
-        }; # pass custom arguments into all sub module.
-        
-        modules = [
-          
-          ./system-common/sys.nix # common config
-
-          ./hosts/virt-nixos/hardware-configuration.nix # hardware scan
-
-          home-manager.nixosModules.home-manager
-          {
-            # see https://discourse.nixos.org/t/home-manager-useuserpackages-useglobalpkgs-settings/34506/3
-            # basically, true / true the sane defaults if the system is a NixOS system
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              inherit osConfig;
-            };
-
-            home-manager.users.${osConfig.hostSettings.userName} = import ./system-common/home.nix;
-
-          }
-        ];
-      };
       
     };
   };
