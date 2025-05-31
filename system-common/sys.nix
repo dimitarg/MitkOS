@@ -15,9 +15,6 @@
 
   # Use latest stable kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # this was originally added to fix suspend issues on Clevo; now common system config
-  boot.kernelParams = [ "mem_sleep_default=deep" ];
   
   networking.hostName = osConfig.hostSettings.hostName;
 

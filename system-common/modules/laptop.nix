@@ -1,6 +1,9 @@
 { config, lib, pkgs, osConfig, inputs, ... }:
 
 {
+  # this was originally added to fix suspend issues on Clevo; now common system config
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
+  
   # not recommended to use power-profiles-daemon together with tlp
   # additionally, this also comes with a UI switch to select between performance / balanced / powersave,
   # whereas we would prefer an UX where plugging or unplugging the AC cable "does the right thing"

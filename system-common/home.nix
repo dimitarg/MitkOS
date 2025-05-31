@@ -229,6 +229,9 @@
           "editor.fontLigatures" = true;
 
           "metals.suggestLatestUpgrade" = false;
+
+          "update.mode" = "none";
+          "workbench.enableExperiments" = false;
           
           "metals.bloopJvmProperties" = [
             "-Xms2G"
