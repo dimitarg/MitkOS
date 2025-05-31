@@ -33,11 +33,11 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
+    };
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... } @ inputs : {
+  outputs = { self, nixpkgs, home-manager, nur, disko, ... } @ inputs : {
     
     nixosConfigurations = let
     
