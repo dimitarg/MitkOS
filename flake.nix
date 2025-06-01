@@ -110,7 +110,6 @@
           
           ./system-common/sys.nix # common config
           ./hosts/nixos
-          ./system-common/modules/remote-desktop
           home-manager.nixosModules.home-manager hmConfig
         ];
       };
@@ -199,6 +198,7 @@
           ./system-common/sys.nix # common config
           ./hosts/cloudy
           home-manager.nixosModules.home-manager hmConfig
+          ./system-common/modules/remote-desktop
         ];
       };
       
