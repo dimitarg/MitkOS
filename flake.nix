@@ -174,7 +174,7 @@
             enable = false;
           };
           gui = {
-            enable = false;
+            enable = true;
           };
         };
         guestUserConfig = {
