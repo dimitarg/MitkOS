@@ -5,20 +5,22 @@
 
       networking.networkmanager.enable = true;
       users.users.${osConfig.hostSettings.userName}.extraGroups = [ "networkmanager" ];
+      
+      services.displayManager.gdm.enable = true;
+
+      services.desktopManager.gnome = {
+        enable = true;
+        extraGSettingsOverrides = ''
+          [org.gnome.desktop.interface]
+          enable-hot-corners=false
+          [org.gnome.desktop.peripherals.touchpad]
+          tap-to-click=true
+        '';
+      };
 
       services.xserver = {
+        # this is confusing naming, we're actually using wayland
         enable = true;
-        displayManager.gdm.enable = true;
-
-        desktopManager.gnome = {
-          enable = true;
-          extraGSettingsOverrides = ''
-            [org.gnome.desktop.interface]
-            enable-hot-corners=false
-            [org.gnome.desktop.peripherals.touchpad]
-            tap-to-click=true
-          '';
-        };
 
         # Configure keymap
         # Unfortunately this only gets picked up on initial setup. If you
