@@ -10,15 +10,13 @@
     modules/virt-manager/sys.nix
     modules/gaming.nix
     modules/guest-user/sys.nix
+    modules/gui/sys.nix
   ];
 
   # Use latest stable kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
   networking.hostName = osConfig.hostSettings.hostName;
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Sofia";
@@ -38,58 +36,14 @@
     LC_TIME = "bg_BG.UTF8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-
-  services.xserver.desktopManager.gnome = {
-  enable = true;
-  extraGSettingsOverrides = ''
-    [org.gnome.desktop.interface]
-    enable-hot-corners=false
-    [org.gnome.desktop.peripherals.touchpad]
-    tap-to-click=true
-  '';
-
-};
 fonts.packages = [
   ## installs nerd-fonts ligatures to be used in Starship
   pkgs.nerd-fonts.adwaita-mono 
 ];
 
-  # Configure keymap
-  # Unfortunately this only gets picked up on initial setup. If you
-  # change these, run:
-  # gsettings reset org.gnome.desktop.input-sources xkb-options
-  # gsettings reset org.gnome.desktop.input-sources sources
-  # reboot
-  # (source: https://discourse.nixos.org/t/problem-with-xkboptions-it-doesnt-seem-to-take-effect/5269?u=jtojnar)
-  services.xserver = {
-    xkb = {
-      layout = "us,bg";
-      variant = ",phonetic";
-    };
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  services.pulseaudio.enable = false;
+  
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+  
 
   
   # smart card daemon
@@ -97,10 +51,6 @@ fonts.packages = [
     enable = true;
     plugins = [pkgs.ccid];
   };
-
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
   
   
   # enable docker. This will auto-start dockerd
@@ -126,7 +76,7 @@ fonts.packages = [
   users.users.${osConfig.hostSettings.userName} = {
     isNormalUser = true;
     description = osConfig.hostSettings.userFullName;
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "wheel" "docker"];
   };
   
   # Allow unfree packages
@@ -155,57 +105,14 @@ fonts.packages = [
   ];
 
 
-  # exclude some packages that I don't use from the default GUI distro
- environment.gnome.excludePackages = with pkgs.gnome; [
-   pkgs.cheese      # photo booth
-   pkgs.epiphany    # web browser
-
-   pkgs.gedit       # text editors, not needed as we have vscode and nano and gnome-text-editor
-
-   #  we're no longer removing this as it's a default editor for non-techies
-   #  if absent, text files open in LibreOffice writer or some other random program, which is horrible UX 
-   # pkgs.gnome-text-editor
-   
-
-   pkgs.geary       # email client. Probably use Thunderbird if we need one.
-   pkgs.seahorse    # password manager
-
-   # gnome-calculator gnome-calendar  gnome-clocks
-   pkgs.gnome-contacts
-   pkgs.gnome-maps
-
-   # gnome-music
-   pkgs.gnome-photos
-   pkgs.gnome-weather
-   pkgs.yelp
-   
-   pkgs.gnome-tour
-   pkgs.gnome-characters
-   pkgs.gnome-font-viewer
-
-   # gnome pdf viewer, removed since we use `papers`
-   pkgs.evince
- ];
-
-  services.xserver.excludePackages = [
-    pkgs.xterm 
-  ];
-
   # zsh completion for system packages
   environment.pathsToLink = [ "/share/zsh" ];
-  # add zsh to GDM shells
+  # add zsh to login shells
   environment.shells = with pkgs; [ zsh ];
 
   
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
   programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
-  };
-
+  
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -213,14 +120,6 @@ fonts.packages = [
 
   # firmware update service
   services.fwupd.enable = true;
-  
-  # firewall enabled with no allowed ingress is the default, let's make it explicit here.
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ ];
-    allowedUDPPorts = [ ];
-    allowPing = false;
-  };
 
   # Nix daemon config
   nix = {

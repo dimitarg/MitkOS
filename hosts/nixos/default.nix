@@ -6,6 +6,7 @@
     ./from-install.nix
     ../../system-common/modules/intel-laptop.nix
     ../../system-common/modules/systemd-boot.nix
+    ../../system-common/modules/closed-firewall.nix
 
     
     # inputs.nixos-hardware.nixosModules.common-gpu-intel

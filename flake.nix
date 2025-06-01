@@ -86,6 +86,9 @@
           gaming = {
             enable = true;
           };
+          gui = {
+            enable = true;
+          };
         };
         guestUserConfig = {
           enable = false;
@@ -126,6 +129,9 @@
           gaming = {
             enable = false;
           };
+          gui = {
+            enable = true;
+          };
         };
         guestUserConfig = {
           enable = false;
@@ -153,13 +159,46 @@
         ];
       };
 
-      # Hetzner headless dedicated server, AMD x86_64
-      "cloudy" = nixpkgs.lib.nixosSystem {
+      # Spare hardware
+      "cloudy" = let
+        osConfig = {
+          hostSettings = {
+            hostName = "cloudy";
+            userName = "imap";
+            userFullName = "Dimitar Georgiev";
+          };
+          virt-manager = {
+            enable = false;
+          };
+          gaming = {
+            enable = false;
+          };
+          gui = {
+            enable = false;
+          };
+        };
+        guestUserConfig = {
+          enable = false;
+        };
         system = "x86_64-linux";
+
+        hmConfig = makeHmConfig {
+          inherit osConfig;
+          inherit guestUserConfig;
+          inherit system;
+        };
+        
+      in makeSystem {
+
+        inherit osConfig;
+        inherit guestUserConfig;
+        inherit system;
+
         modules = [
-          disko.nixosModules.disko
-          ./hosts/cloudy/configuration.nix
-          ./hosts/cloudy/hardware-configuration.nix
+          
+          ./system-common/sys.nix # common config
+          ./hosts/cloudy
+          home-manager.nixosModules.home-manager hmConfig
         ];
       };
       
