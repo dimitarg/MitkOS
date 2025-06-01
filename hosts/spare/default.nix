@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ./from-install.nix
     ../../system-common/modules/intel-laptop.nix
+    ../../system-common/modules/systemd-boot.nix
     
     # this profile is imported as path and not a flake output, since common profiles are getting deprecated
     # , because they're considered for moving in nixpkgs directly
