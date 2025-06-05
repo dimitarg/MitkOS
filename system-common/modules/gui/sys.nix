@@ -93,6 +93,9 @@
 
         # gnome pdf viewer, removed since we use `papers`
         pkgs.evince
+
+        # Unused
+        pkgs.gnome-shell-extensions
       ];
 
       # I don't really remember why I installed this - maybe I needed a GPG key for OSS signing
