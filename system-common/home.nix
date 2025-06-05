@@ -1,11 +1,11 @@
-{ config, pkgs, inputs, osConfig, system, ... }:
+{ config, pkgs, inputs, osConfig, system, extraImports, ... }:
 
 {
     
     imports = [
       modules/virt-manager/home.nix
       modules/gui/home.nix
-    ];
+    ] ++ osConfig.extraHomeModules;
 
     # Home Manager needs a bit of information about us and the paths it should manage.
     home.username = osConfig.hostSettings.userName;

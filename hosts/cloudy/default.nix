@@ -12,7 +12,6 @@
     ./disk-config.nix
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
-    ./gui.nix
   ];
 
   boot.loader.grub = {

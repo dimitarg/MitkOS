@@ -89,6 +89,7 @@
           gui = {
             enable = true;
           };
+          extraHomeModules = [];
         };
         guestUserConfig = {
           enable = false;
@@ -131,6 +132,7 @@
           gui = {
             enable = true;
           };
+          extraHomeModules = [];
         };
         guestUserConfig = {
           enable = false;
@@ -158,7 +160,7 @@
         ];
       };
 
-      # Spare hardware
+      # Remote hardware
       "cloudy" = let
         osConfig = {
           hostSettings = {
@@ -175,6 +177,9 @@
           gui = {
             enable = true;
           };
+          extraHomeModules = [
+            ./hosts/cloudy/gui/home.nix
+          ];
         };
         guestUserConfig = {
           enable = false;
