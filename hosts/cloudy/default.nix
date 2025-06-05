@@ -11,6 +11,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./disk-config.nix
     ./hardware-configuration.nix
+    ./gui/sys.nix
     inputs.disko.nixosModules.disko
   ];
 
