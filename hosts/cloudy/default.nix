@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  osConfig,
   ...
 }:
 {
@@ -22,6 +23,10 @@
 
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi5PXCCF0n2dS8yeOL6Pw0BJsiXcJAjr+29wleWdGqn imap@nixos"
+  ];
+
+  users.users.${osConfig.hostSettings.userName}.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi5PXCCF0n2dS8yeOL6Pw0BJsiXcJAjr+29wleWdGqn imap@nixos"
   ];
 
