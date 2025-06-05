@@ -5,6 +5,10 @@
 
       networking.networkmanager.enable = true;
       users.users.${osConfig.hostSettings.userName}.extraGroups = [ "networkmanager" ];
+
+      environment.systemPackages = with pkgs; [
+        waypipe
+      ];
       
       services.displayManager.gdm.enable = true;
 
