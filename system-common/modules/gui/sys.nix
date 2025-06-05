@@ -8,6 +8,7 @@
 
       environment.systemPackages = with pkgs; [
         waypipe
+        freerdp # behaves better than gnome connections I think
       ];
       
       services.displayManager.gdm.enable = true;
