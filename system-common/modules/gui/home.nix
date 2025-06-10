@@ -53,6 +53,7 @@
           # disables firefox password manager as we use an external one
           "signon.rememberSignons" = false;
           "privacy.donottrackheader.enabled" = true;
+          "privacy.globalprivacycontrol.enabled" = true;
           "browser.contentblocking.category" = "strict";
           # video hardware accerelation using vaapi
           "media.ffmpeg.vaapi.enabled" = true;
