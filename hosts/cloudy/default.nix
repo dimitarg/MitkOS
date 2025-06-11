@@ -22,10 +22,14 @@
     efiInstallAsRemovable = true;
   };
 
-  services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi5PXCCF0n2dS8yeOL6Pw0BJsiXcJAjr+29wleWdGqn imap@nixos"
-  ];
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };
+
 
   users.users.${osConfig.hostSettings.userName}.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINi5PXCCF0n2dS8yeOL6Pw0BJsiXcJAjr+29wleWdGqn imap@nixos"
