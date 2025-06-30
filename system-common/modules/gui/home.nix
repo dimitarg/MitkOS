@@ -130,6 +130,7 @@
           pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
           pkgs.vscode-extensions.disneystreaming.smithy
           pkgs.vscode-extensions.github.copilot
+          pkgs.vscode-extensions.github.copilot-chat
           # these are missing in nixpkgs
           # could be fixed via nix-community/nix-vscode-extensions
           # pkgs.vscode-extensions.buenon.scratchpads
