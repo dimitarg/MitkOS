@@ -114,7 +114,7 @@
 
     programs.vscode = {
       enable = true;
-      package = pkgs.vscodium;
+      # package = pkgs.vscodium;
 
       profiles.default = {
         extensions = [
@@ -129,6 +129,7 @@
           pkgs.vscode-extensions.k--kato.intellij-idea-keybindings
           pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
           pkgs.vscode-extensions.disneystreaming.smithy
+          pkgs.vscode-extensions.github.copilot
           # these are missing in nixpkgs
           # could be fixed via nix-community/nix-vscode-extensions
           # pkgs.vscode-extensions.buenon.scratchpads
