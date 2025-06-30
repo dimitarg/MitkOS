@@ -19,7 +19,8 @@
       # comms
       # slack screensharing is broken under wayland, use slack web app in chrome until this gets resolved
       # https://forums.slackcommunity.com/s/feed/0D53a00009BSEGACA5
-      # pkgs.slack
+      
+      pkgs.slack
       pkgs.zoom-us
       pkgs.discord
 
