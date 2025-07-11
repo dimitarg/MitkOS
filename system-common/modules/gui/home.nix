@@ -170,6 +170,13 @@
             "PosgtreSQL"
           ];
           "cSpell.language" = "en-GB";
+
+          "github.copilot.enable" = {
+            "*" = false;
+            "plaintext" = false;
+            "markdown" = false;
+            "scminput" = false;
+          };
         };
       
       };
