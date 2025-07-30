@@ -24,8 +24,7 @@
       pkgs.zoom-us
       pkgs.discord
 
-      # https://github.com/NixOS/nixpkgs/issues/425328
-      # pkgs.jetbrains.idea-ultimate
+      pkgs.jetbrains.idea-ultimate
 
       # non-work
       pkgs.spotify
