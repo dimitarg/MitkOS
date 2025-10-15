@@ -90,7 +90,7 @@ fonts.packages = [
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    openvpn
+    openvpn3
     curl
     killall
 
@@ -120,6 +120,23 @@ fonts.packages = [
 
   # firmware update service
   services.fwupd.enable = true;
+
+  programs.openvpn3 = {
+    enable = true;
+  };
+
+  # Cloudflare DNS
+  networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+  
+  # OpenVPN defaults to using systemd-resolved to manage dns. Seems like the less painful route
+  # This also enables DNS over TLS
+  services.resolved = {
+    enable = true;
+    dnssec = "true";
+    domains = [ "~." ];
+    fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+    dnsovertls = "true";
+  };
 
   # Nix daemon config
   nix = {
