@@ -179,7 +179,8 @@
             enable = true;
           };
           extraHomeModules = [
-            ./hosts/cloudy/gui/home.nix
+           # WIP making this a headless machine
+           # ./hosts/cloudy/gui/home.nix
           ];
         };
         guestUserConfig = {
@@ -204,7 +205,8 @@
           ./system-common/sys.nix # common config
           ./hosts/cloudy
           home-manager.nixosModules.home-manager hmConfig
-          ./system-common/modules/remote-desktop
+          # WIP making this a headless machine
+          #./system-common/modules/remote-desktop 
         ];
       };
       
