@@ -110,6 +110,7 @@
         modules = [
           
           ./system-common/sys.nix # common config
+          ./system-common/modules/cloudflare-dns
           ./hosts/nixos
           home-manager.nixosModules.home-manager hmConfig
         ];
