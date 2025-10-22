@@ -176,7 +176,8 @@
             enable = false;
           };
           gui = {
-            enable = true;
+            # WIP making this a headless machine
+            enable = false;
           };
           extraHomeModules = [
            # WIP making this a headless machine
