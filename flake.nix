@@ -13,7 +13,6 @@
       # , but also explicitly pin home-manager's nixpkgs input to this flake's nixpkgs
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nur = {
       url = github:nix-community/NUR;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +22,6 @@
       url = "github:chisui/zsh-nix-shell";
       flake = false;
     };
-
     # Workaround for https://github.com/NixOS/nixpkgs/issues/171054
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -34,13 +32,12 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = { self, nixpkgs, home-manager, nur, disko, ... } @ inputs : {
-    
+
     nixosConfigurations = let
-    
+
       makeSystem = { osConfig, guestUserConfig, system, modules } : nixpkgs.lib.nixosSystem {
         inherit system;
 
@@ -49,9 +46,9 @@
           inherit inputs;
           inherit guestUserConfig;
         }; # pass custom arguments into all sub module.
-        
+
         inherit modules;
-        
+
       };
       makeHmConfig = { osConfig, guestUserConfig, system } : {
         # see https://discourse.nixos.org/t/home-manager-useuserpackages-useglobalpkgs-settings/34506/3
@@ -101,14 +98,14 @@
           inherit guestUserConfig;
           inherit system;
         };
-        
+
       in makeSystem {
         inherit osConfig;
         inherit guestUserConfig;
         inherit system;
-        
+
         modules = [
-          
+
           ./system-common/sys.nix # common config
           ./system-common/modules/cloudflare-dns
           ./hosts/nixos
@@ -145,7 +142,7 @@
           inherit guestUserConfig;
           inherit system;
         };
-        
+
       in makeSystem {
 
         inherit osConfig;
@@ -153,7 +150,7 @@
         inherit system;
 
         modules = [
-          
+
           ./system-common/sys.nix # common config
           ./hosts/spare
 
@@ -194,7 +191,7 @@
           inherit guestUserConfig;
           inherit system;
         };
-        
+
       in makeSystem {
 
         inherit osConfig;
@@ -202,15 +199,15 @@
         inherit system;
 
         modules = [
-          
+
           ./system-common/sys.nix # common config
           ./hosts/cloudy
           home-manager.nixosModules.home-manager hmConfig
           # WIP making this a headless machine
-          #./system-common/modules/remote-desktop 
+          #./system-common/modules/remote-desktop
         ];
       };
-      
+
     };
   };
 }

@@ -36,6 +36,12 @@
       pkgs.papers
 
       pkgs.transmission_4-gtk
+
+      # nix language server, used in Zed
+      pkgs.nixd
+
+      # scala language server, used in Zed
+      pkgs.metals
     ];
 
     programs.firefox = {
@@ -182,6 +188,48 @@
       };
 
     };
+
+    programs.zed-editor = {
+      enable = true;
+      extensions = [ "nix" "toml" "rust" "scala" "haskell" ];
+      userSettings = {
+        
+        
+        languages = {
+          Nix =  {
+            language_servers = [ "nixd" "!nil" ];
+          };
+        };
+
+        
+      #   lsp = {
+      #   rust-analyzer = {
+      #     binary = {
+      #       # path = lib.getExe pkgs.rust-analyzer;
+      #       path_lookup = true;
+      #     };
+      #   };
+
+      #     nix = {
+      #       binary = {
+      #         path_lookup = true;
+      #       };
+      #     };
+
+      #     elixir-ls = {
+      #       binary = {
+      #         path_lookup = true;
+      #       };
+      #       settings = {
+      #         dialyzerEnabled = true;
+      #       };
+      #     };
+      #   };
+      # };
+      
+      };
+    };
+
 
     home.file.".face".source = ../../../assets/profilepic.jpg;
 
