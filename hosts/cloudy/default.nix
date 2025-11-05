@@ -34,7 +34,7 @@
   # Do something useful with this machine until I start using it again
   services.foldingathome = {
     enable = true;
-  }
+  };
 
 
   users.users.${osConfig.hostSettings.userName}.openssh.authorizedKeys.keys = [
