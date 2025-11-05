@@ -36,11 +36,9 @@
     enable = true;
   };
 
-  {
   networking.firewall = {
     allowedTCPPorts = [ 7396 ]; # foldingathome
   };
-}
 
 
   users.users.${osConfig.hostSettings.userName}.openssh.authorizedKeys.keys = [
