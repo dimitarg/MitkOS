@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, osConfig, ... }:
+{ lib, config, pkgs, inputs, osConfig, system, ... }:
 
 {
   config = lib.mkIf osConfig.gui.enable {
@@ -123,20 +123,20 @@
       # package = pkgs.vscodium;
 
       profiles.default = {
-        extensions = [
-          pkgs.vscode-extensions.bbenoist.nix
-          pkgs.vscode-extensions.scalameta.metals
-          pkgs.vscode-extensions.scala-lang.scala
-          pkgs.vscode-extensions.haskell.haskell
+        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
+          bbenoist.nix
+          scalameta.metals
+          scala-lang.scala
+          haskell.haskell
 
-          pkgs.vscode-extensions.rust-lang.rust-analyzer
+          rust-lang.rust-analyzer
           
-          pkgs.vscode-extensions.tamasfe.even-better-toml
-          pkgs.vscode-extensions.k--kato.intellij-idea-keybindings
-          pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
-          pkgs.vscode-extensions.disneystreaming.smithy
-          pkgs.vscode-extensions.github.copilot
-          pkgs.vscode-extensions.github.copilot-chat
+          tamasfe.even-better-toml
+          k--kato.intellij-idea-keybindings
+          streetsidesoftware.code-spell-checker
+          disneystreaming.smithy
+          github.copilot
+          github.copilot-chat
           # these are missing in nixpkgs
           # could be fixed via nix-community/nix-vscode-extensions
           # pkgs.vscode-extensions.buenon.scratchpads
