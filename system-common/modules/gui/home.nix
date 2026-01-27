@@ -151,13 +151,14 @@
           "**/.bloop" = true;
           "**/.metals" = true;
           "**/.ammonite" = true;
+          "**/.direnv" = true;
           };
           "editor.tabSize" = 2;
           "editor.fontFamily" = "'AdwaitaMono Nerd Font'";
           "editor.fontLigatures" = true;
           "editor.renderWhitespace" = "all";
 
-          "metals.suggestLatestUpgrade" = false;
+          "metals.suggestLatestUpgrade" = "off";
 
           "update.mode" = "none";
           "workbench.enableExperiments" = false;
