@@ -123,7 +123,7 @@
       # package = pkgs.vscodium;
 
       profiles.default = {
-        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
+        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace-release; [
           bbenoist.nix
           scalameta.metals
           scala-lang.scala
