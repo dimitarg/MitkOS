@@ -163,7 +163,7 @@
           "update.mode" = "none";
           "workbench.enableExperiments" = false;
           
-          "metals.bloopJvmProperties" = [
+          "metals.serverProperties" = [
             "-Xms2G"
             "-Xmx8G"
           ];
