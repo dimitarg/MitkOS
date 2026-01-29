@@ -36,6 +36,11 @@
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
     };
+
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nur, disko, ... } @ inputs : {
@@ -183,6 +188,7 @@
           extraHomeModules = [
            # WIP making this a headless machine
            # ./hosts/cloudy/gui/home.nix
+            ./system-common/modules/code-server/home.nix
           ];
         };
         guestUserConfig = {
