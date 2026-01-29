@@ -188,6 +188,7 @@
           extraHomeModules = [
            # WIP making this a headless machine
            # ./hosts/cloudy/gui/home.nix
+            inputs.vscode-server.homeModules.default
             ./system-common/modules/code-server/home.nix
           ];
         };
