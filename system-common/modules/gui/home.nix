@@ -137,6 +137,8 @@
           disneystreaming.smithy
           github.copilot
           github.copilot-chat
+
+          mkhl.direnv
           # these are missing in nixpkgs
           # could be fixed via nix-community/nix-vscode-extensions
           # pkgs.vscode-extensions.buenon.scratchpads
