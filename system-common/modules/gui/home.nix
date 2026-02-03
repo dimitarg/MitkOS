@@ -24,7 +24,7 @@
       pkgs.zoom-us
       pkgs.discord
 
-      pkgs.jetbrains.idea-ultimate
+      pkgs.jetbrains.idea
 
       # non-work
       pkgs.spotify
