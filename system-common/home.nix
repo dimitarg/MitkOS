@@ -31,6 +31,8 @@
       # needed globally for user because config is user-global anyways
       pkgs.awscli2
       pkgs.kubectl
+
+      pkgs.claude-code
     ];
 
     programs.zsh = {
