@@ -14,6 +14,7 @@
     # WIP: making this a headless machine
     # ./gui/sys.nix
     inputs.disko.nixosModules.disko
+    ../../system-common/modules/disable-dhcpd-docker.nix
   ];
 
   boot.loader.grub = {
