@@ -162,6 +162,10 @@
 
           "metals.suggestLatestUpgrade" = "off";
 
+          "metals.startMcpServer" = true;
+          "metals.mcpClient" = "claude";
+
+
           "update.mode" = "none";
           "workbench.enableExperiments" = false;
           
