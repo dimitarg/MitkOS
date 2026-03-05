@@ -238,6 +238,23 @@
       };
     };
 
+    # terminal emulator
+    programs.ghostty = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+      systemd.enable = true;
+      # https://ghostty.org/docs/config/reference
+      settings = {
+        shell-integration-features = [
+          # https://ghostty.org/docs/help/terminfo
+          "sudo"
+          "ssh-terminfo"
+          "ssh-env"
+        ];
+      };
+    };
+
 
     home.file.".face".source = ../../../assets/profilepic.jpg;
 
