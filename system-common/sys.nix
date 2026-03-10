@@ -38,7 +38,8 @@
 
 fonts.packages = [
   ## installs nerd-fonts ligatures to be used in Starship
-  pkgs.nerd-fonts.adwaita-mono 
+  pkgs.nerd-fonts.adwaita-mono
+  pkgs.nerd-fonts.jetbrains-mono
 ];
 
   

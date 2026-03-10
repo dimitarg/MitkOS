@@ -156,7 +156,7 @@
           "**/.direnv" = true;
           };
           "editor.tabSize" = 2;
-          "editor.fontFamily" = "'AdwaitaMono Nerd Font'";
+          "editor.fontFamily" = "'JetBrainsMono Nerd Font'";
           "editor.fontLigatures" = true;
           "editor.renderWhitespace" = "all";
 
