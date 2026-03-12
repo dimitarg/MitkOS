@@ -98,7 +98,12 @@
         # This doesn't actually work as extensions is part of the gnome nixos package
         # see https://github.com/NixOS/nixpkgs/issues/297847
         # pkgs.gnome-shell-extensions
+
+        # Replaced by Ghostty
+        pkgs.gnome-terminal
       ];
+
+      programs.gnome-terminal.enable = false;
 
       # I don't really remember why I installed this - maybe I needed a GPG key for OSS signing
       # https://github.com/dimitarg/MitkOS/commit/dd1b8633f4b9347612badb5c4a0d29f012016115
