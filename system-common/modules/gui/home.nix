@@ -114,9 +114,9 @@
       
     };
 
-    # programs.chromium = {
-    #   enable = true;
-    # };
+    programs.chromium = {
+      enable = true;
+    };
 
     programs.vscode = {
       enable = true;
