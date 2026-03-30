@@ -92,7 +92,7 @@ fonts.packages = [
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # openvpn3
+    openvpn3
     curl
     killall
 
@@ -123,9 +123,9 @@ fonts.packages = [
   # firmware update service
   services.fwupd.enable = true;
 
-  # programs.openvpn3 = {
-  #   enable = true;
-  # };
+  programs.openvpn3 = {
+    enable = true;
+  };
 
 
   # Nix daemon config
