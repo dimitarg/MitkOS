@@ -37,6 +37,10 @@
 
     programs.zsh = {
       enable = true;
+      
+      # This is the default in newer home manager state versions
+      dotDir = "${config.xdg.configHome}/zsh";
+      
       shellAliases = {
         ll = "ls -lah";
       };
