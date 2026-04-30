@@ -82,9 +82,14 @@
 
     programs.git = {
       enable = true;
-      userName = "Dimitar Georgiev";
-      userEmail = "dimitar.georgiev.bg@gmail.com";
-      extraConfig = {
+      # null is the default for newer home manager state.version's, this was added to not change existing behaviour
+      # consider signing via ssh in the future?
+      signing.format = "openpgp";
+      settings = {
+        user = {
+          name = "Dimitar Georgiev";
+          email = "dimitar.georgiev.bg@gmail.com";
+        };
         push = {
           autoSetupRemote = true;
         };
