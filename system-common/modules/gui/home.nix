@@ -42,6 +42,8 @@
     ];
 
     programs.firefox = {
+      # this is default in newer home manager state versions
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       enable = true;
       # we need a Profile in order for extension provisioning to work
       profiles.default = {
@@ -84,6 +86,7 @@
 
           # TODO consider https://github.com/arkenfox/user.js/blob/3d76c74c80485931425464fec0e59d6cb461677a/user.js#L1175 
           # For now, give Mozilla benefit of doubt
+
         };
 
         extensions = {
