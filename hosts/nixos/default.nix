@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     ./from-install.nix
     ../../system-common/modules/intel-laptop.nix
-    ../../system-common/modules/systemd-boot.nix
+    ../../system-common/modules/limine-boot.nix
     ../../system-common/modules/closed-firewall.nix
 
     
