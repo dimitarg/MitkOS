@@ -6,5 +6,4 @@
   # no idea if this is needed
   boot.loader.efi.canTouchEfiVariables = true;
 
-  environment.systemPackages = [ pkgs.sbctl ];
 }

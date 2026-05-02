@@ -104,6 +104,9 @@ fonts.packages = [
     # nix packages version diff tool
     nvd
 
+    # manage secure boot keys etc. Used by lanzaboote, limine
+    sbctl
+
   ];
 
 
