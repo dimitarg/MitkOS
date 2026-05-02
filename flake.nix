@@ -182,12 +182,9 @@
             enable = false;
           };
           gui = {
-            # WIP making this a headless machine
             enable = false;
           };
           extraHomeModules = [
-           # WIP making this a headless machine
-           # ./hosts/cloudy/gui/home.nix
             inputs.vscode-server.homeModules.default
             ./system-common/modules/code-server/home.nix
           ];
@@ -214,8 +211,6 @@
           ./system-common/sys.nix # common config
           ./hosts/cloudy
           home-manager.nixosModules.home-manager hmConfig
-          # WIP making this a headless machine
-          #./system-common/modules/remote-desktop
         ];
       };
 

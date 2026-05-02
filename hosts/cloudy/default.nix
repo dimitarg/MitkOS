@@ -11,11 +11,15 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./disk-config.nix
     ./hardware-configuration.nix
-    # WIP: making this a headless machine
-    # ./gui/sys.nix
     inputs.disko.nixosModules.disko
     ../../system-common/modules/disable-dhcpd-docker.nix
+    ../../system-common/modules/unattended-upgrade
   ];
+
+  # Note on missing full disk encryption:
+  # FDE will not reasonably protect us from a rogue Hetzner since they have physical access to the machine and varioud ways to circumvent any protection
+  # However, it would prevent us from a third party if their processes in decomissioning or repurposing our disk fall short.
+  # Consider FDE next time we set up a remote machine.
 
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
