@@ -7,8 +7,17 @@
       mimeApps = {
         enable = true;
         defaultApplications = {
+
           "application/pdf" = ["org.gnome.Papers.desktop"];
           "text/plain" = ["org.gnome.TextEditor.desktop"];
+          "text/xml" = ["org.gnome.TextEditor.desktop"];
+          "application/xml" = ["org.gnome.TextEditor.desktop"];
+
+          # When chromium is added, it seems to hijack associations even though it's not added as default
+          "text/html" = ["firefox.desktop"];
+          "x-scheme-handler/http" = ["firefox.desktop"];
+          "x-scheme-handler/https" = ["firefox.desktop"];
+
         };
       };
 
@@ -253,6 +262,10 @@
           "ssh-env"
         ];
       };
+    };
+
+    programs.chromium = {
+      enable = true;
     };
 
 

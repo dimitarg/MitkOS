@@ -95,7 +95,7 @@
             enable = true;
           };
           gaming = {
-            enable = true;
+            enable = false;
           };
           gui = {
             enable = true;
