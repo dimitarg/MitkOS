@@ -123,10 +123,6 @@
       
     };
 
-    # programs.chromium = {
-    #   enable = true;
-    # };
-
     programs.vscode = {
       enable = true;
       # package = pkgs.vscodium;
@@ -266,6 +262,7 @@
 
     programs.chromium = {
       enable = true;
+      package = pkgs.ungoogled-chromium;
     };
 
 
