@@ -100,7 +100,9 @@
           gui = {
             enable = true;
           };
-          extraHomeModules = [];
+          extraHomeModules = [
+            ./system-common/modules/obs/home.nix
+          ];
         };
         guestUserConfig = {
           enable = false;
