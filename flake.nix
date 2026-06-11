@@ -193,8 +193,8 @@
             enable = false;
           };
           extraHomeModules = [
-            inputs.vscode-server.homeModules.default
-            ./system-common/modules/code-server/home.nix
+            # inputs.vscode-server.homeModules.default
+            # ./system-common/modules/code-server/home.nix
           ];
         };
         guestUserConfig = {
