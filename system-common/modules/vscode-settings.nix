@@ -38,15 +38,4 @@
     "scminput" = false;
   };
 
-  # https://github.com/nix-community/nixos-vscode-server/issues/82
-  # TODO deduplicate, or find a better way
-  # TODO this breaks reproducibility and consistency
-  remote.SSH.defaultExtensions = [
-    "bbenoist.nix"
-    "scalameta.metals"
-    "scala-lang.scala"
-    "haskell.haskell"
-    "rust-lang.rust-analyzer"
-    "mkhl.direnv"
-  ];
 }
