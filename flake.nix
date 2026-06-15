@@ -46,7 +46,9 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      # url = "github:nix-community/lanzaboote/v1.0.0";
+      # use lanzaboote main until https://github.com/nix-community/lanzaboote/issues/624 gets released
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
