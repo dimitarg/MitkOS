@@ -230,6 +230,11 @@
       };
     };
 
+    home.sessionVariables = {
+      # needed because gnome terminal is removed by us
+      TERMINAL = "ghostty";
+    };
+
     programs.chromium = {
       enable = true;
       package = pkgs.ungoogled-chromium;
