@@ -31,9 +31,18 @@
       # needed globally for user because config is user-global anyways
       pkgs.awscli2
       pkgs.kubectl
-
-      pkgs.claude-code
     ];
+
+    # claude-code is installed and configured via programs.claude-code below.
+    # Note: this makes ~/.claude/settings.json a read-only store symlink, so
+    # interactive setting changes (e.g. /model) won't persist across rebuilds.
+    programs.claude-code = {
+      enable = true;
+      settings = {
+        model = "opus";
+        permissions.allow = [ "Read(//nix/store/**)" ];
+      };
+    };
 
     programs.zsh = {
       enable = true;
