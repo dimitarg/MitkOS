@@ -185,6 +185,15 @@
       } // import ../zed-settings.nix;
     };
 
+    # Global Zed debug + task configs, shared with the cloudy remote host
+    # (zed-server module) so Scala run/debug presets are always available.
+    # Merged into every workspace; project-level .zed/{debug,tasks}.json, if
+    # present, take precedence.
+    home.file.".config/zed/debug.json".text =
+      builtins.toJSON (import ../zed-debug.nix);
+    home.file.".config/zed/tasks.json".text =
+      builtins.toJSON (import ../zed-tasks.nix);
+
     # terminal emulator
     programs.ghostty = {
       enable = true;

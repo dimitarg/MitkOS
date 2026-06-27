@@ -35,4 +35,12 @@
   # the shared file is also imported by the gui module for local editing.
   home.file.".config/zed/settings.json".text =
     builtins.toJSON (import ../zed-settings.nix);
+
+  # Scala run/debug presets, shared with the client via the same files the gui
+  # module uses. Written here too so they are present whichever side Zed reads
+  # them from for a remote project.
+  home.file.".config/zed/debug.json".text =
+    builtins.toJSON (import ../zed-debug.nix);
+  home.file.".config/zed/tasks.json".text =
+    builtins.toJSON (import ../zed-tasks.nix);
 }

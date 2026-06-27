@@ -11,6 +11,12 @@
 # Only put settings here that the *remote* Zed needs (languages / lsp). Purely
 # client-side UI settings (theme, keymap, fonts) belong in the gui module.
 {
+  # Load the project's direnv environment via `direnv export`, so that tasks
+  # (e.g. the sbt `scala-test` task) and language servers inherit the project's
+  # nix-shell / .envrc environment -- not just interactive terminals, which is
+  # all "shell_hook" would cover.
+  load_direnv = "direct";
+
   languages = {
     Nix = {
       language_servers = [ "nixd" "!nil" ];
