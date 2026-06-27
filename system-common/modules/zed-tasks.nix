@@ -10,8 +10,9 @@
 [
   {
     label = "Scala: test current file";
-    command = "sbt";
+    command = "sbt 'testOnly *$ZED_STEM'";
     args = [ "testOnly *$ZED_STEM*" ];
+    reveal = "no_focus";
     tags = [ "scala-test" ];
   }
 ]
