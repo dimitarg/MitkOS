@@ -9,6 +9,15 @@
       environment.systemPackages = with pkgs; [
         waypipe
         freerdp # behaves better than gnome connections I think
+
+        # See  https://github.com/NixOS/nixpkgs/issues/297847
+        # Ideally upstream fixes this and we drop this.
+        (lib.hiPrio (makeDesktopItem {
+          name = "org.gnome.Extensions";
+          desktopName = "Extensions";
+          exec = "gnome-extensions-app";
+          noDisplay = true;
+        }))
       ];
       
       services.displayManager.gdm.enable = true;
@@ -95,13 +104,11 @@
         # gnome pdf viewer, removed since we use `papers`
         pkgs.evince
 
-        # This doesn't actually work as extensions is part of the gnome nixos package
-        # see https://github.com/NixOS/nixpkgs/issues/297847
-        # pkgs.gnome-shell-extensions
-
         # Replaced by Ghostty
         pkgs.gnome-terminal
         pkgs.gnome-console
+
+        pkgs.gnome-shell-extensions
       ];
 
       programs.gnome-terminal.enable = false;
