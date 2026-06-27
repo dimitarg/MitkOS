@@ -112,7 +112,7 @@
         };
 
         extensions = {
-          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          packages = with pkgs.firefox-addons; [
             lastpass-password-manager
             privacy-badger
             ublock-origin

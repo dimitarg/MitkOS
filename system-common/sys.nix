@@ -84,7 +84,7 @@ fonts.packages = [
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [
-    inputs.nur.overlays.default
+    inputs.firefox-addons.overlays.default
     inputs.nix-vscode-extensions.overlays.default
   ];
 

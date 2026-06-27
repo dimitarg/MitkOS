@@ -16,8 +16,9 @@
       # , but also explicitly pin home-manager's nixpkgs input to this flake's nixpkgs
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
-      url = github:nix-community/NUR;
+   
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,7 +52,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, disko, ... } @ inputs : {
+  outputs = { self, nixpkgs, home-manager, disko, ... } @ inputs : {
 
     nixosConfigurations = let
 
