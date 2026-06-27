@@ -22,21 +22,10 @@
   # property is injected automatically by the Zed Metals extension; we
   # only need to tell Metals to route client commands through it.
   #
-  # NOTE: setting `binary.arguments` below makes Zed use these args
-  # directly instead of the extension's defaults, which disables Metals
-  # DAP/debug support in Zed. We accept that trade-off in order to give
-  # the Metals language server a large enough heap for very large Scala
-  # projects (mirrors `metals.serverProperties` in vscode-settings.nix).
-  # This is the Metals *LSP* server heap; the sbt build server's heap is
-  # configured separately via the project's `.jvmopts` / `SBT_OPTS`.
+  
   lsp = {
     metals = {
-      binary = {
-        arguments = [
-          "-Xms2G"
-          "-Xmx8G"
-        ];
-      };
+      
       initialization_options = {
         isHttpEnabled = true;
       };
