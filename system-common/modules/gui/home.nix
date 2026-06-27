@@ -56,12 +56,9 @@
 
       pkgs.transmission_4-gtk
 
-      # nix language server, used in Zed
-      pkgs.nixd
-
-      # scala language server, used in Zed
-      pkgs.metals
-    ];
+    # Zed language servers, shared with the cloudy remote host (zed-server
+    # module) via ../zed-language-servers.nix.
+    ] ++ import ../zed-language-servers.nix pkgs;
 
     programs.firefox = {
       # this is default in newer home manager state versions
@@ -174,6 +171,9 @@
     programs.zed-editor = {
       enable = true;
       extensions = [ "nix" "toml" "rust" "scala" "haskell" ];
+      # Client-only UI settings live here; the LSP/language settings that the
+      # remote host also needs are shared via ../zed-settings.nix (see that
+      # file for why they cannot stay client-side for remote development).
       userSettings = {
         base_keymap = "JetBrains";
 
@@ -182,75 +182,7 @@
           dark = "One Dark";
           light = "One Light";
         };
-
-        languages = {
-          Nix =  {
-            language_servers = [ "nixd" "!nil" ];
-          };
-        };
-
-        # Enable the Metals HTTP server (localhost:5031) so client commands
-        # such as the Metals Doctor work in Zed. The `-Dmetals.http=on` JVM
-        # property is injected automatically by the Zed Metals extension; we
-        # only need to tell Metals to route client commands through it.
-        #
-        # NOTE: setting `binary.arguments` below makes Zed use these args
-        # directly instead of the extension's defaults, which disables Metals
-        # DAP/debug support in Zed. We accept that trade-off in order to give
-        # the Metals language server a large enough heap for very large Scala
-        # projects (mirrors `metals.serverProperties` in vscode-settings.nix).
-        # This is the Metals *LSP* server heap; the sbt build server's heap is
-        # configured separately via the project's `.jvmopts` / `SBT_OPTS`.
-        lsp = {
-          metals = {
-            binary = {
-              arguments = [
-                "-Xms2G"
-                "-Xmx8G"
-              ];
-            };
-            initialization_options = {
-              isHttpEnabled = true;
-            };
-            # Metals user-configuration (mirrors vscode-settings.nix).
-            settings = {
-              # Prefer the build tool's own BSP server (sbt) over Bloop, so the
-              # editor shares the same compilation state as the sbt CLI.
-              defaultBspToBuildTool = true;
-              # Start Metals' MCP server so Claude Code can connect to it.
-              startMcpServer = true;
-              mcpClient = "claude";
-            };
-          };
-        };
-
-
-      #   lsp = {
-      #   rust-analyzer = {
-      #     binary = {
-      #       # path = lib.getExe pkgs.rust-analyzer;
-      #       path_lookup = true;
-      #     };
-      #   };
-
-      #     nix = {
-      #       binary = {
-      #         path_lookup = true;
-      #       };
-      #     };
-
-      #     elixir-ls = {
-      #       binary = {
-      #         path_lookup = true;
-      #       };
-      #       settings = {
-      #         dialyzerEnabled = true;
-      #       };
-      #     };
-      #   };
-      # };
-      
-      };
+      } // import ../zed-settings.nix;
     };
 
     # terminal emulator

@@ -196,6 +196,7 @@
           extraHomeModules = [
             inputs.vscode-server.homeModules.default
             ./system-common/modules/code-server/home.nix
+            ./system-common/modules/zed-server/home.nix
           ];
         };
         guestUserConfig = {
