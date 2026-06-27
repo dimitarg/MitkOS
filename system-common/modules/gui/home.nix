@@ -4,6 +4,19 @@
   config = lib.mkIf osConfig.gui.enable {
     xdg = {
       enable = true;
+
+      # Hide GNOME's "Extensions" app (gnome-extensions-app) from the app grid and
+      # the overview search.
+      # Ref: https://github.com/NixOS/nixpkgs/issues/297847
+      dataFile."applications/org.gnome.Extensions.desktop".text = ''
+        [Desktop Entry]
+        Type=Application
+        Name=Extensions
+        Exec=gnome-extensions-app
+        NoDisplay=true
+        Hidden=true
+      '';
+
       mimeApps = {
         enable = true;
         defaultApplications = {

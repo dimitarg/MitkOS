@@ -10,14 +10,6 @@
         waypipe
         freerdp # behaves better than gnome connections I think
 
-        # See  https://github.com/NixOS/nixpkgs/issues/297847
-        # Ideally upstream fixes this and we drop this.
-        (lib.hiPrio (makeDesktopItem {
-          name = "org.gnome.Extensions";
-          desktopName = "Extensions";
-          exec = "gnome-extensions-app";
-          noDisplay = true;
-        }))
       ];
       
       services.displayManager.gdm.enable = true;
