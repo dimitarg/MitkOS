@@ -101,6 +101,7 @@
 
         # Replaced by Ghostty
         pkgs.gnome-terminal
+        pkgs.gnome-console
       ];
 
       programs.gnome-terminal.enable = false;
