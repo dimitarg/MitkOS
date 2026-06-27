@@ -21,6 +21,8 @@
           enable-hot-corners=false
           [org.gnome.desktop.peripherals.touchpad]
           tap-to-click=true
+          [org.gnome.shell]
+          always-show-log-out=true
         '';
       };
 
