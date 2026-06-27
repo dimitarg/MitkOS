@@ -170,6 +170,14 @@
 
     programs.zed-editor = {
       enable = true;
+      # Write settings.json as a declarative store symlink instead of jq-merging
+      # into the on-disk file (the default). The merge only ever adds/overrides
+      # keys and never deletes them, so removing a setting in nix would never
+      # take effect (this is how a stale lsp.metals.binary.arguments lingered and
+      # blocked Metals DAP). Trade-off: settings.json becomes read-only, so
+      # interactive changes in Zed won't persist -- put them in nix instead. This
+      # matches how the zed-server module writes cloudy's settings.json.
+      mutableUserSettings = false;
       extensions = [ "nix" "toml" "rust" "scala" "haskell" "java" ];
       # Client-only UI settings live here; the LSP/language settings that the
       # remote host also needs are shared via ../zed-settings.nix (see that
