@@ -157,10 +157,9 @@
           github.copilot-chat
 
           mkhl.direnv
-          # these are missing in nixpkgs
-          # could be fixed via nix-community/nix-vscode-extensions
-          # pkgs.vscode-extensions.buenon.scratchpads
-          # pkgs.vscode-extensions.unison-lang.unison
+
+          buenon.scratchpads
+          # unison-lang.unison
         ];
 
         enableUpdateCheck = false;
