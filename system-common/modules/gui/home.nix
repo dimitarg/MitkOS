@@ -235,6 +235,14 @@
       TERMINAL = "ghostty";
     };
 
+    # needed because gnome terminal is removed by us
+    xdg.terminal-exec = {
+      enable = true;
+      settings.default = [
+        "ghostty"
+      ];
+    };
+
     programs.chromium = {
       enable = true;
       package = pkgs.ungoogled-chromium;
