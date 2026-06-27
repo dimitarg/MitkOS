@@ -170,7 +170,7 @@
 
     programs.zed-editor = {
       enable = true;
-      extensions = [ "nix" "toml" "rust" "scala" "haskell" ];
+      extensions = [ "nix" "toml" "rust" "scala" "haskell" "java" ];
       # Client-only UI settings live here; the LSP/language settings that the
       # remote host also needs are shared via ../zed-settings.nix (see that
       # file for why they cannot stay client-side for remote development).

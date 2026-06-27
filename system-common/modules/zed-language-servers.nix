@@ -14,4 +14,10 @@ pkgs: [
   pkgs.nixd
   # scala language server
   pkgs.metals
+  # java language server (Eclipse JDT LS). Used by the Zed `java` extension for
+  # reading Java dependency sources from Scala projects. Note: jdtls only
+  # understands Maven/Gradle/standalone Java projects, so it does not know an
+  # sbt project's classpath -- expect basic Java features (syntax, hover,
+  # outline, JDK navigation) rather than full cross-dependency navigation.
+  pkgs.jdt-language-server
 ]
