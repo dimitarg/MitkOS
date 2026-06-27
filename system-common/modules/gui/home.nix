@@ -258,6 +258,12 @@
           (pkgs.lib.gvariant.mkTuple [ "xkb" "bg+phonetic" ])
         ];
       };
+      # Free up workspace left/right shortcuts so they don't conflict
+      # with VSCode forward/back navigation.
+      "org.gnome.desktop.wm.keybindings" = {
+        "switch-to-workspace-left" = [ "" ];
+        "switch-to-workspace-right" = [ "" ];
+      };
     };
   };
 }
