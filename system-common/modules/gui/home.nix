@@ -190,6 +190,10 @@
           dark = "One Dark";
           light = "One Light";
         };
+
+        # Use fish in Zed's integrated terminal; Zed otherwise defaults to the
+        # login shell (zsh).
+        terminal.shell.program = "${pkgs.fish}/bin/fish";
       } // import ../zed-settings.nix;
     };
 
@@ -207,9 +211,12 @@
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
+      enableFishIntegration = true;
       systemd.enable = true;
       # https://ghostty.org/docs/config/reference
       settings = {
+        # Interactive shell = fish, without changing the login shell (still zsh).
+        command = "${pkgs.fish}/bin/fish";
         shell-integration-features = [
           # https://ghostty.org/docs/help/terminfo
           "sudo"

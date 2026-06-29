@@ -66,6 +66,7 @@ fonts.packages = [
   };      
 
   programs.zsh.enable=true;
+  programs.fish.enable=true;
   users.defaultUserShell = pkgs.zsh;
 
   # command-not-found support
