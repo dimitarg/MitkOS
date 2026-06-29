@@ -27,7 +27,16 @@
   # During remote development the language servers run on the host, not the
   # client, so the LSP binaries must be on the remote PATH. Shared with the gui
   # module via ../zed-language-servers.nix so the set stays in sync.
-  home.packages = import ../zed-language-servers.nix pkgs;
+  #
+  # node is appended here (not in the shared LSP set) because it is a remote-only
+  # need. Metals' "Cascade compile" and the other Metals: tasks run
+  # `node ~/.metals-zed/cmd.mjs <command>` to POST to the proxy's HTTP port. The
+  # nixpkgs zed-editor package wraps the local GUI with nodejs on PATH, so tasks
+  # inherit node there for free; the downloaded remote_server binary is not
+  # wrapped that way, so without this its task shell (`zsh -i -c 'node ...'`)
+  # cannot find node. (The Metals LSP itself works regardless, via Zed's own
+  # bundled node.)
+  home.packages = import ../zed-language-servers.nix pkgs ++ [ pkgs.nodejs ];
 
   # Zed does not propagate the client's settings to the remote host, and the
   # language servers run here, so their configuration must be readable
