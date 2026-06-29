@@ -209,6 +209,7 @@
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
+      enableFishIntegration = true;
       systemd.enable = true;
       # https://ghostty.org/docs/config/reference
       settings = {

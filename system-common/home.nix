@@ -1,7 +1,6 @@
 { config, pkgs, inputs, osConfig, system, extraImports, ... }:
 
 {
-    
     imports = [
       modules/virt-manager/home.nix
       modules/gui/home.nix
@@ -22,7 +21,6 @@
     home.stateVersion = "22.05";
 
     home.packages = [
-      
       pkgs.htop
       pkgs.bind
       pkgs.jq
@@ -44,12 +42,12 @@
       };
     };
 
+    programs.fish.enable = true;
+
     programs.zsh = {
       enable = true;
-      
       # This is the default in newer home manager state versions
       dotDir = "${config.xdg.configHome}/zsh";
-      
       shellAliases = {
         ll = "ls -lah";
       };
@@ -59,7 +57,7 @@
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ 
+        plugins = [
           "git"
           "aws"
           "command-not-found"
@@ -71,7 +69,6 @@
       };
 
       enableCompletion = true;
-      
       # This allows to use zsh as a shell in nix-shell, instead of defaulting to bash
       plugins = [
         {
@@ -113,4 +110,3 @@
       enable = true;
     };
 }
-
