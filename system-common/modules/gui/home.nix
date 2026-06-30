@@ -38,7 +38,7 @@
     };
 
     home.packages = [
-      
+
       pkgs.slack
       pkgs.zoom-us
       pkgs.discord
@@ -103,7 +103,7 @@
 
           "security.ssl.require_safe_negotiation" = true;
 
-          # TODO consider https://github.com/arkenfox/user.js/blob/3d76c74c80485931425464fec0e59d6cb461677a/user.js#L1175 
+          # TODO consider https://github.com/arkenfox/user.js/blob/3d76c74c80485931425464fec0e59d6cb461677a/user.js#L1175
           # For now, give Mozilla benefit of doubt
 
         };
@@ -130,7 +130,7 @@
           EmailTracking = true;
         };
       };
-      
+
     };
 
     programs.vscode = {
@@ -145,7 +145,7 @@
           haskell.haskell
 
           rust-lang.rust-analyzer
-          
+
           tamasfe.even-better-toml
           k--kato.intellij-idea-keybindings
           streetsidesoftware.code-spell-checker
@@ -163,7 +163,7 @@
         enableExtensionUpdateCheck = false;
 
         userSettings = import ../vscode-settings.nix;
-      
+
       };
 
     };
@@ -190,6 +190,8 @@
           dark = "One Dark";
           light = "One Light";
         };
+
+        ui_font_size = 18;
       } // import ../zed-settings.nix;
     };
 
@@ -256,4 +258,3 @@
     };
   };
 }
-
