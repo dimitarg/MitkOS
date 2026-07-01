@@ -15,7 +15,7 @@
 
   # Use latest stable kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
+
   networking.hostName = osConfig.hostSettings.hostName;
 
   # Set your time zone.
@@ -42,18 +42,18 @@ fonts.packages = [
   pkgs.nerd-fonts.jetbrains-mono
 ];
 
-  
-  security.rtkit.enable = true;
-  
 
-  
+  security.rtkit.enable = true;
+
+
+
   # smart card daemon
   services.pcscd = {
     enable = true;
     plugins = [pkgs.ccid];
   };
-  
-  
+
+
   # enable docker. This will auto-start dockerd
   virtualisation = {
     docker = {
@@ -63,7 +63,7 @@ fonts.packages = [
         dates = "weekly";
       };
     };
-  };      
+  };
 
   programs.zsh.enable=true;
   programs.fish.enable=true;
@@ -73,14 +73,15 @@ fonts.packages = [
   programs.nix-index.enable = true;
   # run program without installing ti, by typing `, <program>`
   programs.nix-index-database.comma.enable = true;
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${osConfig.hostSettings.userName} = {
     isNormalUser = true;
     description = osConfig.hostSettings.userFullName;
     extraGroups = [ "wheel" "docker"];
+    shell = pkgs.fish;
   };
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -114,11 +115,11 @@ fonts.packages = [
   # zsh completion for system packages
   environment.pathsToLink = [ "/share/zsh" ];
   # add zsh to login shells
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [ zsh fish ];
 
-  
+
   programs.mtr.enable = true;
-  
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
