@@ -42,7 +42,12 @@
       };
     };
 
-    programs.fish.enable = true;
+    programs.fish = {
+      enable = true;
+      shellAliases = {
+        claudio = "claude";
+      };
+    };
 
     programs.zsh = {
       enable = true;
