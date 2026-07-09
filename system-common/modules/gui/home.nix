@@ -143,7 +143,10 @@
       # interactive changes in Zed won't persist -- put them in nix instead. This
       # matches how the zed-server module writes cloudy's settings.json.
       mutableUserSettings = false;
-      extensions = [ "nix" "toml" "rust" "scala" "haskell" "java" ];
+      # "sql" is syntax highlighting only (tree-sitter grammar); the extension
+      # declares no language server, so it needs no entry in
+      # ../zed-language-servers.nix or ../zed-settings.nix.
+      extensions = [ "nix" "toml" "rust" "scala" "haskell" "java" "sql" ];
       # Client-only UI settings live here; the LSP/language settings that the
       # remote host also needs are shared via ../zed-settings.nix (see that
       # file for why they cannot stay client-side for remote development).
