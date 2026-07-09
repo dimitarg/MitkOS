@@ -11,7 +11,7 @@
         freerdp # behaves better than gnome connections I think
 
       ];
-      
+
       services.displayManager.gdm.enable = true;
 
       services.desktopManager.gnome = {
@@ -43,7 +43,7 @@
         };
 
         excludePackages = [
-          pkgs.xterm 
+          pkgs.xterm
         ];
       };
 
@@ -68,16 +68,16 @@
       services.libinput.enable = true;
 
       # exclude some packages that I don't use from the default GUI distro
-      environment.gnome.excludePackages = with pkgs.gnome; [
+      environment.gnome.excludePackages =  [
         pkgs.cheese      # photo booth
         pkgs.epiphany    # web browser
 
-        pkgs.gedit       # text editors, not needed as we have vscode and nano and gnome-text-editor
+        pkgs.gedit       # text editors, not needed as we have IDEs and nano and gnome-text-editor
 
         #  we're no longer removing this as it's a default editor for non-techies
-        #  if absent, text files open in LibreOffice writer or some other random program, which is horrible UX 
+        #  if absent, text files open in LibreOffice writer or some other random program, which is horrible UX
         # pkgs.gnome-text-editor
-        
+
 
         pkgs.geary       # email client. Probably use Thunderbird if we need one.
         pkgs.seahorse    # password manager
@@ -90,7 +90,7 @@
         pkgs.gnome-photos
         pkgs.gnome-weather
         pkgs.yelp
-        
+
         pkgs.gnome-tour
         pkgs.gnome-characters
         pkgs.gnome-font-viewer

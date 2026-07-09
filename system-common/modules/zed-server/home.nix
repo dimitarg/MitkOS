@@ -1,6 +1,5 @@
 { pkgs, ... }:
-# Server-side counterpart of ../code-server/home.nix, but for Zed's SSH remote
-# development instead of VSCode Remote-SSH.
+# Zed remote SSH server module.
 #
 # Zed connects over plain SSH and runs a "remote server" binary on the host, in
 # ~/.zed_server/. The binary Zed would download from zed.dev is a generic Linux

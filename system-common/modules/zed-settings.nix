@@ -6,7 +6,7 @@
 # aware of the other's main settings file." Language servers run on the host,
 # so their configuration (which LSP to use, heap size, etc.) must be readable
 # server-side. To avoid drift we keep that LSP-relevant config here and import
-# it on both sides -- the same pattern as ../vscode-settings.nix.
+# it on both sides.
 #
 # Only put settings here that the *remote* Zed needs (languages / lsp). Purely
 # client-side UI settings (theme, keymap, fonts) belong in the gui module.
@@ -28,14 +28,14 @@
   # property is injected automatically by the Zed Metals extension; we
   # only need to tell Metals to route client commands through it.
   #
-  
+
   lsp = {
     metals = {
-      
+
       initialization_options = {
         isHttpEnabled = true;
       };
-      # Metals user-configuration (mirrors vscode-settings.nix).
+      # Metals user-configuration.
       settings = {
         # Prefer the build tool's own BSP server (sbt) over Bloop, so the
         # editor shares the same compilation state as the sbt CLI.

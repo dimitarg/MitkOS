@@ -87,7 +87,6 @@ fonts.packages = [
 
   nixpkgs.overlays = [
     inputs.firefox-addons.overlays.default
-    inputs.nix-vscode-extensions.overlays.default
   ];
 
 

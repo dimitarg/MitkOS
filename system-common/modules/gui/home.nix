@@ -133,41 +133,6 @@
 
     };
 
-    programs.vscode = {
-      enable = true;
-      # package = pkgs.vscodium;
-
-      profiles.default = {
-        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace-release; [
-          bbenoist.nix
-          scalameta.metals
-          scala-lang.scala
-          haskell.haskell
-
-          rust-lang.rust-analyzer
-
-          tamasfe.even-better-toml
-          k--kato.intellij-idea-keybindings
-          streetsidesoftware.code-spell-checker
-          disneystreaming.smithy
-          github.copilot
-          github.copilot-chat
-
-          mkhl.direnv
-
-          buenon.scratchpads
-          # unison-lang.unison
-        ];
-
-        enableUpdateCheck = false;
-        enableExtensionUpdateCheck = false;
-
-        userSettings = import ../vscode-settings.nix;
-
-      };
-
-    };
-
     programs.zed-editor = {
       enable = true;
       # Write settings.json as a declarative store symlink instead of jq-merging
@@ -251,7 +216,7 @@
         ];
       };
       # Free up workspace left/right shortcuts so they don't conflict
-      # with VSCode forward/back navigation.
+      # with IDE (currently Zed) forward/back navigation.
       "org.gnome.desktop.wm.keybindings" = {
         "switch-to-workspace-left" = [ "" ];
         "switch-to-workspace-right" = [ "" ];

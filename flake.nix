@@ -16,7 +16,7 @@
       # , but also explicitly pin home-manager's nixpkgs input to this flake's nixpkgs
       inputs.nixpkgs.follows = "nixpkgs";
     };
-   
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,14 +37,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-    };
-
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.1.0";
@@ -194,8 +186,6 @@
             enable = false;
           };
           extraHomeModules = [
-            inputs.vscode-server.homeModules.default
-            ./system-common/modules/code-server/home.nix
             ./system-common/modules/zed-server/home.nix
           ];
         };
