@@ -1,6 +1,10 @@
 { lib, config, pkgs, osConfig, inputs, ... }:
 
 {
+  imports = [
+    ../flatpak.nix
+  ];
+
   config = lib.mkIf osConfig.gui.enable {
 
       networking.networkmanager.enable = true;
@@ -9,7 +13,6 @@
       environment.systemPackages = with pkgs; [
         waypipe
         freerdp # behaves better than gnome connections I think
-
       ];
 
       services.displayManager.gdm.enable = true;
