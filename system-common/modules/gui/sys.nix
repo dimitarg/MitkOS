@@ -118,7 +118,7 @@
         pinentryPackage = pkgs.pinentry-gnome3;
       };
 
-      # at the time of writing, it seems openvpn3 has a dep on gtk and wayland. Hence in the gui module and not system-common
+      # currently unused on headless profile
       programs.openvpn3 = {
         enable = true;
       };
