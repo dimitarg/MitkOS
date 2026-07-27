@@ -118,6 +118,7 @@
 
           ./system-common/sys.nix # common config
           ./system-common/modules/cloudflare-dns
+          ./system-common/modules/aws-vpn
           ./hosts/nixos
           home-manager.nixosModules.home-manager hmConfig
         ];
@@ -162,6 +163,7 @@
         modules = [
 
           ./system-common/sys.nix # common config
+          ./system-common/modules/aws-vpn
           ./hosts/spare
 
           home-manager.nixosModules.home-manager hmConfig
