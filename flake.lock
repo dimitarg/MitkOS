@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "aws-vpn-client-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750323485,
+        "narHash": "sha256-d16dbwLfl7s0Az6yrIyEbjG9MNxeouHT5VupBPVV0Qc=",
+        "owner": "imgrant",
+        "repo": "aws-vpn-client",
+        "rev": "1e677b412385c97b281c38f36ee941e371a0c2e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "imgrant",
+        "repo": "aws-vpn-client",
+        "rev": "1e677b412385c97b281c38f36ee941e371a0c2e2",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1781825982,
@@ -221,6 +238,7 @@
     },
     "root": {
       "inputs": {
+        "aws-vpn-client-src": "aws-vpn-client-src",
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",

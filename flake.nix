@@ -26,6 +26,22 @@
       url = "github:chisui/zsh-nix-shell";
       flake = false;
     };
+
+    # SAML authentication wrapper for AWS Client VPN, see
+    # ./system-common/modules/aws-vpn. Source only; we deliberately do not use
+    # this repo's own flake outputs, as its flake pins nixpkgs 22.05 in order to
+    # get an OpenVPN old enough for the 2.5.1 patch it carries.
+    #
+    # Deliberately pinned to an immutable rev rather than a branch. This code
+    # handles the SAML assertion and invokes `sudo openvpn`, and `update.sh`
+    # runs a blanket `nix flake update` and auto-commits the result. Tracking a
+    # branch would let an unreviewed upstream change to a single-maintainer
+    # repository land on both laptops silently. Bumping this must be a
+    # deliberate, reviewed edit of the rev below.
+    aws-vpn-client-src = {
+      url = "github:imgrant/aws-vpn-client/1e677b412385c97b281c38f36ee941e371a0c2e2";
+      flake = false;
+    };
     # Workaround for https://github.com/NixOS/nixpkgs/issues/171054
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

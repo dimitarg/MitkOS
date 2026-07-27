@@ -17,7 +17,10 @@
 
 let
   openvpn-aws = pkgs.callPackage ./openvpn-aws.nix { };
-  aws-vpn-client = pkgs.callPackage ./aws-vpn-client.nix { inherit openvpn-aws; };
+  aws-vpn-client = pkgs.callPackage ./aws-vpn-client.nix {
+    inherit openvpn-aws;
+    src = inputs.aws-vpn-client-src;
+  };
 
   # OpenVPN invokes up/down scripts with a minimal environment, and
   # update-systemd-resolved needs busctl and ip on PATH. Wrap it so it does not
