@@ -67,6 +67,13 @@ been archived and moved once. It targets OpenVPN 2.6.12 but applies to nixpkgs'
 2.6.x with line offsets only; if a future bump breaks it, re-fetch from
 <https://github.com/aws-vpn-client/aws-vpn-client>.
 
-The wrapper is pinned by commit in `aws-vpn-client.nix`. Upstream's own flake
-pins nixpkgs 22.05 to get OpenVPN 2.5.6 — we deliberately ignore that and build
-against our nixpkgs so we are not carrying an EOL OpenVPN.
+The wrapper comes from the `aws-vpn-client-src` flake input, which is pinned to
+an immutable rev *in the input URL itself* — so `nix flake update`, including
+the blanket one in `update.sh`, cannot move it. That is deliberate: this code
+receives the SAML assertion and invokes `sudo openvpn`, and `update.sh`
+auto-commits without review. Bumping it means editing the rev in `flake.nix`
+and reading the upstream diff first.
+
+We take only the source. Upstream's own flake pins nixpkgs 22.05 to get OpenVPN
+2.5.6, which we deliberately ignore, building against our nixpkgs instead so we
+are not carrying an EOL OpenVPN.

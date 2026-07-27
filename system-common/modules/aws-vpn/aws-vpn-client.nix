@@ -1,4 +1,4 @@
-{ lib, buildGoModule, fetchFromGitHub, openvpn-aws }:
+{ lib, buildGoModule, src, openvpn-aws }:
 
 # Drives the two-stage SAML handshake that AWS requires:
 #
@@ -12,19 +12,15 @@
 # Stage 2 runs under sudo, since it needs to create the tun device and install
 # routes. The browser is opened via xdg-open, so this is GUI hosts only.
 #
-# Upstream pins nixpkgs 22.05 in its own flake to get OpenVPN 2.5.6; we ignore
-# that and build the wrapper against our nixpkgs with the 2.6.x patch instead,
-# so we are not carrying an EOL OpenVPN.
+# `src` is the `aws-vpn-client-src` flake input, pinned to an immutable rev; see
+# the comment on that input in flake.nix for why it must not track a branch.
+# We take the source only, and build it against our own nixpkgs with the 2.6.x
+# patch, so we are not carrying the EOL OpenVPN 2.5.x its flake would pull in.
 buildGoModule {
   pname = "aws-vpn-client";
   version = "0-unstable-2025-06-19";
 
-  src = fetchFromGitHub {
-    owner = "imgrant";
-    repo = "aws-vpn-client";
-    rev = "1e677b412385c97b281c38f36ee941e371a0c2e2";
-    hash = "sha256-d16dbwLfl7s0Az6yrIyEbjG9MNxeouHT5VupBPVV0Qc=";
-  };
+  inherit src;
 
   # No third-party imports; stdlib only.
   vendorHash = null;
