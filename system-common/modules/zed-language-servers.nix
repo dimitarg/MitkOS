@@ -37,36 +37,64 @@ let
   # 2026-07-24). No released Metals carries a fix and nixpkgs has no issue open
   # for it, so we supply the flags ourselves.
   #
-  # The package list is Metals' own, taken from the jdk.compiler half of the set
-  # that scalameta/metals#8639 moved out of JavaPruneCompiler's defaults. mtags
-  # currently only reaches api/file/parser/tree/util; the rest are carried so a
-  # future Metals touching one more package cannot silently reintroduce the
-  # hang. All twelve are verified to exist in jdk.compiler on this JDK (a bogus
-  # one would make the JVM warn on every start).
-  javacExports = map (p: "--add-exports jdk.compiler/com.sun.tools.javac.${p}=ALL-UNNAMED") [
-    "api"
-    "code"
-    "comp"
-    "file"
-    "jvm"
-    "main"
-    "model"
-    "parser"
-    "processing"
-    "resources"
-    "tree"
-    "util"
-  ];
-
-  # extraJavaOpts is read back through finalAttrs in the package's installPhase,
-  # so extending it here lands the flags in the real JVM argument position --
-  # ahead of `-cp ... scala.meta.metals.Main` -- for both the metals and
-  # metals-mcp wrappers. Appending via makeWrapper --add-flags would instead put
-  # them after the main class, where Metals would read them as its own
-  # arguments, and JDK_JAVA_OPTIONS would leak the flags into every build tool
-  # Metals spawns. Drop this once nixpkgs' metals ships the flags itself.
+  # We do not have to guess the flags, or vendor a copy of them. Metals ships the
+  # exact list it requires as META-INF/metals-required-vm-options.txt inside
+  # metals_2.13-<version>.jar, added by scalameta/metals#8357 -- the same PR that
+  # swapped QDox for the javac indexer.
+  #
+  # No code on the Metals classpath reads that resource; per the maintainer in
+  # scalameta/metals#8735 it is the editor integration's job to apply it, and
+  # metals-vscode duly does (src/readRequiredVmOptions.ts opens the first jar of
+  # the classpath and parses the file). metals-zed does not: it resolves `metals`
+  # off PATH and hands that opaque binary to a proxy, so it never sees a
+  # classpath to read the resource from, nor a java command line to add flags to.
+  # Hence the hang here but not in VS Code.
+  #
+  # Applying the flags in the launcher instead is a better fit for this setup
+  # anyway: it covers metals-mcp and any other client, not just Zed.
+  #
+  # So read the list straight out of the jar at build time. Vendoring it here
+  # would silently rot the next time Metals needs one more package -- exactly the
+  # failure mode we are fixing -- whereas this tracks whatever the packaged
+  # version declares. Currently twelve --add-exports plus four --add-opens.
   metals = pkgs.metals.overrideAttrs (old: {
-    extraJavaOpts = "${old.extraJavaOpts} ${builtins.concatStringsSep " " javacExports}";
+    nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.unzip ];
+
+    # Guard, in preBuild because the package defines a custom installPhase that
+    # never calls runHook -- a preInstall hook here would be silently skipped and
+    # we would ship an unflagged Metals with the original hang. The default
+    # buildPhase does run its hooks (it finds no makefile and does nothing else),
+    # so this is the last hook that reliably fires before install.
+    #
+    # A renamed or dropped resource must fail the rebuild loudly rather than
+    # quietly produce a wrapper with no flags, which is the exact regression this
+    # override exists to prevent.
+    preBuild = (old.preBuild or "") + ''
+      if ! unzip -p ${old.deps}/share/java/metals_2.13-*.jar \
+             META-INF/metals-required-vm-options.txt 2>/dev/null | grep -q .; then
+        echo "metals: META-INF/metals-required-vm-options.txt is missing or empty." >&2
+        echo "Check whether a launcher now applies these flags itself; if so, drop" >&2
+        echo "this override in zed-language-servers.nix." >&2
+        exit 1
+      fi
+    '';
+
+    # extraJavaOpts is read back through finalAttrs in the package's installPhase,
+    # so extending it here lands the flags in the real JVM argument position --
+    # ahead of `-cp ... scala.meta.metals.Main` -- for both the metals and
+    # metals-mcp wrappers. Appending via makeWrapper --add-flags would instead put
+    # them after the main class, where Metals would read them as its own
+    # arguments, and JDK_JAVA_OPTIONS would leak the flags into every build tool
+    # Metals spawns. Drop this whole override once metals-zed reads the resource
+    # the way metals-vscode does, or once nixpkgs applies it in the package.
+    #
+    # The $(...) is expanded by bash, not Nix: this string is interpolated into a
+    # double-quoted shell argument in that installPhase, so the substitution runs
+    # there. Doing it inline rather than via a variable set in an earlier phase
+    # keeps it independent of which hooks the package happens to call.
+    extraJavaOpts = ''
+      ${old.extraJavaOpts} $(unzip -p ${old.deps}/share/java/metals_2.13-*.jar \
+        META-INF/metals-required-vm-options.txt | tr '\n' ' ')'';
   });
 in
 [
