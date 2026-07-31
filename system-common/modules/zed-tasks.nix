@@ -20,4 +20,18 @@
     reveal = "no_focus";
     tags = [ "scala-test" ];
   }
+  {
+    # Zed's LSP Logs pane stays empty for Metals on a remote project: Metals
+    # writes nothing to stderr (it redirects its own System.err into
+    # .metals/metals.log) and ships its log over LSP as window/logMessage
+    # instead, which Zed's remote forwarding does not surface. Servers that do
+    # write to stderr, such as nixd and jdtls, show up there normally. Opening
+    # the same project locally shows the Metals log, which is what pins this to
+    # the remote path. So read Metals' own file, on the host where it runs.
+    #
+    # -F, not -f: Metals recreates metals.log on restart and after a .metals
+    # wipe, and -F re-opens by name instead of holding the deleted inode.
+    label = "Metals: tail log";
+    command = ''tail -F -n 200 "$ZED_WORKTREE_ROOT/.metals/metals.log"'';
+  }
 ]
