@@ -13,6 +13,7 @@
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
     ../../system-common/modules/disable-dhcpd-docker.nix
+    ../../system-common/modules/hetzner-ntp.nix
     ../../system-common/modules/unattended-upgrade
     # System half of the Zed remote-server module (home half is wired via
     # extraHomeModules in flake.nix). Lets Zed's downloaded native extension
