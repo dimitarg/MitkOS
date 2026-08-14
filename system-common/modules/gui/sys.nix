@@ -11,7 +11,8 @@
       users.users.${osConfig.hostSettings.userName}.extraGroups = [ "networkmanager" ];
 
       environment.systemPackages = with pkgs; [
-        waypipe
+        # https://github.com/NixOS/nixpkgs/issues/552542
+        # waypipe
         freerdp # behaves better than gnome connections I think
       ];
 
