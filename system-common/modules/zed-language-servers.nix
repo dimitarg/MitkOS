@@ -57,45 +57,68 @@ let
   # would silently rot the next time Metals needs one more package -- exactly the
   # failure mode we are fixing -- whereas this tracks whatever the packaged
   # version declares. Currently twelve --add-exports plus four --add-opens.
-  metals = pkgs.metals.overrideAttrs (old: {
-    nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.unzip ];
+  # extraJavaOpts is where the flags go: the package interpolates it into the
+  # real JVM argument position -- ahead of `-cp ... scala.meta.metals.Main` --
+  # for both the metals and metals-mcp wrappers. Appending via makeWrapper
+  # --add-flags would instead put them after the main class, where Metals would
+  # read them as its own arguments, and JDK_JAVA_OPTIONS would leak the flags
+  # into every build tool Metals spawns. Drop this whole override once metals-zed
+  # reads the resource the way metals-vscode does, or once nixpkgs applies it in
+  # the package.
+  metals =
+    let
+      inherit (pkgs.lib) assertMsg hasInfix;
 
-    # Guard, in preBuild because the package defines a custom installPhase that
-    # never calls runHook -- a preInstall hook here would be silently skipped and
-    # we would ship an unflagged Metals with the original hang. The default
-    # buildPhase does run its hooks (it finds no makefile and does nothing else),
-    # so this is the last hook that reliably fires before install.
-    #
-    # A renamed or dropped resource must fail the rebuild loudly rather than
-    # quietly produce a wrapper with no flags, which is the exact regression this
-    # override exists to prevent.
-    preBuild = (old.preBuild or "") + ''
-      if ! unzip -p ${old.deps}/share/java/metals_2.13-*.jar \
-             META-INF/metals-required-vm-options.txt 2>/dev/null | grep -q .; then
-        echo "metals: META-INF/metals-required-vm-options.txt is missing or empty." >&2
-        echo "Check whether a launcher now applies these flags itself; if so, drop" >&2
-        echo "this override in zed-language-servers.nix." >&2
-        exit 1
-      fi
+      # Where the jar lives. NixOS/nixpkgs#552786 moved deps under passthru to
+      # stop it leaking into the build environment; the bare `metals.deps` of the
+      # previous override no longer resolves.
+      depsJar = "${pkgs.metals.passthru.deps}/share/java/metals_2.13-*.jar";
+
+      # That same PR turned extraJavaOpts from a derivation attribute into a
+      # package argument, defaulted in the function head. callPackage does not
+      # pass it (nothing named extraJavaOpts exists in pkgs), so it is absent
+      # from the original argument set and neither `override` nor `overrideAttrs`
+      # can read the previous value back -- extending it means restating the
+      # upstream default. Restating it silently is how it goes stale, so check it
+      # against the installPhase the package actually ships and fail evaluation
+      # if upstream has retuned the JVM since.
+      upstreamJavaOpts = "-XX:+UseG1GC -XX:+UseStringDeduplication -Xss4m -Xms100m";
+
+      # The $(...) is expanded by bash, not Nix: this string is interpolated into
+      # a double-quoted shell argument in the package's installPhase, so the
+      # substitution runs there. Doing it inline rather than via a variable set in
+      # an earlier phase keeps it independent of which hooks the package calls.
+      requiredVmOpts = ''$(unzip -p ${depsJar} META-INF/metals-required-vm-options.txt | tr '\n' ' ')'';
+    in
+    assert assertMsg (hasInfix ''--add-flags "${upstreamJavaOpts} -cp'' pkgs.metals.installPhase) ''
+      metals: the packaged extraJavaOpts default is no longer
+        ${upstreamJavaOpts}
+      Copy the new default out of the metals package into upstreamJavaOpts in
+      zed-language-servers.nix, or drop this override if the package now applies
+      the required VM options itself.
     '';
+    (pkgs.metals.override {
+      extraJavaOpts = "${upstreamJavaOpts} ${requiredVmOpts}";
+    }).overrideAttrs
+      (old: {
+        nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.unzip ];
 
-    # extraJavaOpts is read back through finalAttrs in the package's installPhase,
-    # so extending it here lands the flags in the real JVM argument position --
-    # ahead of `-cp ... scala.meta.metals.Main` -- for both the metals and
-    # metals-mcp wrappers. Appending via makeWrapper --add-flags would instead put
-    # them after the main class, where Metals would read them as its own
-    # arguments, and JDK_JAVA_OPTIONS would leak the flags into every build tool
-    # Metals spawns. Drop this whole override once metals-zed reads the resource
-    # the way metals-vscode does, or once nixpkgs applies it in the package.
-    #
-    # The $(...) is expanded by bash, not Nix: this string is interpolated into a
-    # double-quoted shell argument in that installPhase, so the substitution runs
-    # there. Doing it inline rather than via a variable set in an earlier phase
-    # keeps it independent of which hooks the package happens to call.
-    extraJavaOpts = ''
-      ${old.extraJavaOpts} $(unzip -p ${old.deps}/share/java/metals_2.13-*.jar \
-        META-INF/metals-required-vm-options.txt | tr '\n' ' ')'';
-  });
+        # A renamed or dropped resource must fail the rebuild loudly rather than
+        # quietly produce a wrapper with no flags -- `unzip -p` on a missing
+        # member succeeds with empty output -- which is the exact regression this
+        # override exists to prevent. preInstall fires since #552786 taught the
+        # custom installPhase to call runHook; before that it was silently
+        # skipped and the guard had to sit in preBuild.
+        preInstall = (old.preInstall or "") + ''
+          if ! unzip -p ${depsJar} \
+                 META-INF/metals-required-vm-options.txt 2>/dev/null | grep -q .; then
+            echo "metals: META-INF/metals-required-vm-options.txt is missing or empty." >&2
+            echo "Check whether a launcher now applies these flags itself; if so, drop" >&2
+            echo "this override in zed-language-servers.nix." >&2
+            exit 1
+          fi
+        '';
+      });
 in
 [
   # nix language server
