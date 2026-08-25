@@ -3,6 +3,7 @@
 {
   imports = [
     ../flatpak.nix
+    ../smart-card/sys.nix
   ];
 
   config = lib.mkIf osConfig.gui.enable {

@@ -47,12 +47,6 @@ fonts.packages = [
 
 
 
-  # smart card daemon
-  services.pcscd = {
-    enable = true;
-    plugins = [pkgs.ccid];
-  };
-
 
   # enable docker. This will auto-start dockerd
   virtualisation = {
@@ -95,11 +89,6 @@ fonts.packages = [
   environment.systemPackages = with pkgs; [
     curl
     killall
-
-    # certs / smart cards
-    pcsclite
-    ccid
-    opensc
 
     # nix packages version diff tool
     nvd

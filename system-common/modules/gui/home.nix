@@ -1,6 +1,10 @@
 { lib, config, pkgs, inputs, osConfig, system, ... }:
 
 {
+  imports = [
+    ../smart-card/home.nix
+  ];
+
   config = lib.mkIf osConfig.gui.enable {
     xdg = {
       enable = true;
@@ -117,20 +121,9 @@
         };
       };
 
+      # Note: SecurityDevices (the opensc PKCS#11 module) is declared in
+      # ../smart-card/home.nix and merges into this attrset.
       policies = {
-        "SecurityDevices" = {
-          "Add" = {
-            # Deliberately not "${pkgs.opensc}/lib/...": firefox copies this path
-            # verbatim into the profile's pkcs11.txt, which is mutable state and is
-            # never rewritten once a module of this name exists. A pinned store path
-            # therefore dangles as soon as opensc is rebuilt and the old closure is
-            # garbage collected, after which NSS silently stops loading the module.
-            # That also breaks smart card signing in `papers`, because poppler reads
-            # certificates out of the firefox NSS db. The system profile symlink
-            # always resolves to the current opensc.
-            "CAC Module" = "/run/current-system/sw/lib/opensc-pkcs11.so";
-          };
-        };
         EnableTrackingProtection = {
           Value= true;
           Cryptomining = true;
