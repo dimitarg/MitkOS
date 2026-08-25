@@ -120,7 +120,15 @@
       policies = {
         "SecurityDevices" = {
           "Add" = {
-            "CAC Module" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+            # Deliberately not "${pkgs.opensc}/lib/...": firefox copies this path
+            # verbatim into the profile's pkcs11.txt, which is mutable state and is
+            # never rewritten once a module of this name exists. A pinned store path
+            # therefore dangles as soon as opensc is rebuilt and the old closure is
+            # garbage collected, after which NSS silently stops loading the module.
+            # That also breaks smart card signing in `papers`, because poppler reads
+            # certificates out of the firefox NSS db. The system profile symlink
+            # always resolves to the current opensc.
+            "CAC Module" = "/run/current-system/sw/lib/opensc-pkcs11.so";
           };
         };
         EnableTrackingProtection = {
