@@ -43,11 +43,14 @@
 
     home.packages = [
 
+      # comms
       pkgs.slack
       pkgs.zoom-us
       pkgs.discord
 
+      # dev
       pkgs.jetbrains.idea
+      pkgs.bruno
 
       # non-work
       pkgs.spotify
