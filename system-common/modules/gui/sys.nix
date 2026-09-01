@@ -92,7 +92,6 @@
         pkgs.gnome-maps
 
         # gnome-music
-        pkgs.gnome-photos
         pkgs.gnome-weather
         pkgs.yelp
 
