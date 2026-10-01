@@ -120,9 +120,10 @@
       };
 
       # currently unused on headless profile
-      programs.openvpn3 = {
-        enable = true;
-      };
+      # 2026-10-01 - fails to build with latest nixpkgs. No issue yet found in nixpkgs tracker
+      # programs.openvpn3 = {
+      #   enable = true;
+      # };
 
 
   };
