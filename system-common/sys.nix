@@ -126,6 +126,11 @@ fonts.packages = [
     };
 
     settings = {
+
+      # add system / flake nixpgs path to NIX_PATH to in an effort to ensure legacy CLI works
+      # Note this doesn't actually work, see https://discourse.nixos.org/t/disabling-channels-breaks-nix-path-resolution/34825
+      nix-path = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
+
       # Automate `nix store --optimise`
       auto-optimise-store = true;
 
@@ -142,9 +147,6 @@ fonts.packages = [
       enable = false;
     };
 
-    # add system / flake nixpgs path to NIX_PATH to in an effort to ensure legacy CLI works
-    # Note this doesn't actually work, see https://discourse.nixos.org/t/disabling-channels-breaks-nix-path-resolution/34825
-    nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
 
     registry = {
       # this sets the system flake registry's nixpkgs to the nixpkgs used to build the NixOS distro
