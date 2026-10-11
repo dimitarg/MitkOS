@@ -18,7 +18,10 @@
     };
 
     firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      url = "git+https://gitlab.com/rycee/nur-expressions?dir=pkgs/firefox-addons";
+      # unable to download 'https://gitlab.com/api/v4/projects/rycee%2Fnur-expressions/repository/commits?ref_name=HEAD': HTTP error 403
+      # https://github.com/NixOS/nix/pull/16588 - try to roll back to this once it lands
+      # url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
