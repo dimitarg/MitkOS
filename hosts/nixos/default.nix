@@ -38,5 +38,13 @@
 
   # but then I experienced a noticeable screen tear during stage 1 boot, and convinced myself this is not a good idea.
 
+
+  # The FTCS1000 touchpad on this Clevo NV4xPZ is I2C HID, but psmouse also probes its PS/2 fallback,
+  # and after resume it can end up in plain mouse mode (no gestures). Same fix as System76 ships for
+  # this chassis (Lemur Pro). Not in nixos-hardware, which has no profile for it.
+  # https://github.com/NixOS/nixpkgs/issues/551770
+  # https://github.com/pop-os/system76-driver/pull/265
+  boot.blacklistedKernelModules = [ "psmouse" ];
+
 }
 
