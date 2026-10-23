@@ -150,7 +150,7 @@
       # "sql" is syntax highlighting only (tree-sitter grammar); the extension
       # declares no language server, so it needs no entry in
       # ../zed-language-servers.nix or ../zed-settings.nix.
-      extensions = [ "nix" "toml" "rust" "scala" "haskell" "java" "sql" ];
+      extensions = [ "nix" "toml" "rust" "scala" "haskell" "java" "sql" "harper" ];
       # Client-only UI settings live here; the LSP/language settings that the
       # remote host also needs are shared via ../zed-settings.nix (see that
       # file for why they cannot stay client-side for remote development).

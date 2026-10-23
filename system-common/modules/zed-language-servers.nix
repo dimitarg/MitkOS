@@ -24,4 +24,6 @@ pkgs:
   # sbt project's classpath -- expect basic Java features (syntax, hover,
   # outline, JDK navigation) rather than full cross-dependency navigation.
   pkgs.jdt-language-server
+  # spelling/grammar language server (harper-ls)
+  pkgs.harper
 ]

@@ -17,6 +17,10 @@
   # all "shell_hook" would cover.
   load_direnv = "direct";
 
+
+  # If it proves to be too noisy
+  # language_servers = [ "!harper-ls" "..." ];
+
   languages = {
     Nix = {
       language_servers = [ "nixd" "!nil" ];
@@ -30,6 +34,11 @@
   #
 
   lsp = {
+    harper-ls.settings.harper-ls = {
+      dialect = "British";
+      userDictPath = "${./harper-dictionary.txt}";
+    };
+
     metals = {
 
       initialization_options = {
