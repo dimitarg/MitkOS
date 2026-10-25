@@ -107,6 +107,10 @@ fonts.packages = [
 
   programs.mtr.enable = true;
 
+  # nixos-rebuild wrapper with nix-output-monitor build output and a package diff (dix) before activation.
+  # Used by deploy.sh / test.sh. nh's own `clean` is left disabled, as GC is handled by nix.gc below.
+  programs.nh.enable = true;
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
