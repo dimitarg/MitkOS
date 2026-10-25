@@ -33,6 +33,15 @@
     efiInstallAsRemovable = true;
   };
 
+  # swraid mdmonitor needs alerting configured or it complains and nixos-rebuild switch sometimes fails due to it.
+  # This just sends a warning in the syslog
+  # Other options would require secret management and I can't be bothered right now.
+  boot.swraid.mdadmConf = ''
+    PROGRAM ${pkgs.writeShellScript "mdadm-event" ''
+      ${pkgs.util-linux}/bin/logger -t mdadm-event -p daemon.warning "$*"
+    ''}
+  '';
+
   services.openssh = {
     enable = true;
     settings = {
