@@ -29,6 +29,9 @@
       # needed globally for user because config is user-global anyways
       pkgs.awscli2
       pkgs.kubectl
+
+      # could be local per project shell but more convenient this way
+      pkgs.apacheKafka
     ];
 
     # claude-code is installed and configured via programs.claude-code below.
