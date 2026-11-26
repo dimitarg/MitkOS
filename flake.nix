@@ -110,7 +110,7 @@
             enable = true;
           };
           gaming = {
-            enable = false;
+            enable = true;
           };
           gui = {
             enable = true;
